@@ -1,0 +1,82 @@
+<div class="modal-header">
+    <h4 class="modal-title">Sign up</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="background-image: url('./assets/loginu.jpg');">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <table class="table table-bordered">
+            <tbody>
+                <tr id="upozorenje" class="hidden">
+                    <td colspan="2"><strong>Error!</strong> User with that username already exists!</td>
+                </tr>
+                <tr>
+                    <td>Username:</td>
+                    <td>
+                        <input type="text" formControlName="UserName" placeholder="Username...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="text" formControlName="Email" placeholder="Email...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input type="password" formControlName="Password" placeholder="Password...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Confirm password:</td>
+                    <td>
+                        <input type="password" formControlName="ConfirmPassword" placeholder="Confirm password...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td>
+                        <input type="text" title="letters only" id="txtIme" pattern="^[A-Za-z]*$" formControlName="Name" placeholder="Name..."> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>Surname:</td>
+                    <td>
+                        <input type="text" title="letters only" formControlName="Surname" pattern="^[A-Za-z]*$" placeholder="Surname...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td>
+                        <input type="text" formControlName="Address" placeholder="Address...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone number:</td>
+                    <td>
+                        <input type="text" title="input format: xxx/xxxxxxx" pattern="^[0-9]{3}\/[0-9]{7}$" formControlName="PhoneNumber" placeholder="xxx/xxxxxxx"> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date of birth:</td>
+                    <td>
+                        <input type="text" title="input format: mm.dd.yyyy." pattern="(0[1-9]|1[0-2])\.(0[1-9]|1\d|2\d|3[01])\.((19|20)\d{2})\.$" formControlName="DateOfBirth" placeholder="mm.dd.yyyy."> 
+                    </td>
+                </tr>
+                <br>
+                <br>
+                <tr class="success">
+                    <td colspan="2">
+                          <button [disabled]="!registerForm.valid" class="btn btn-success pull-right" type="submit"> Submit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </form>
+  </div>
+  <div class="modal-footer">
+    <br>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
+  </div>

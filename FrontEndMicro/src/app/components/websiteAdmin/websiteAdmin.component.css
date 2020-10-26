@@ -1,0 +1,15 @@
+.navRow:hover {
+    cursor: pointer;
+    background-color: gainsboro !important;
+}
+
+.card-smallcard {
+    border-radius: 20px !important;
+    border: none !important;
+    box-shadow: 1px 1px 10px #0000004a;
+    background-color: whitesmoke;
+}
+
+.card-smallcard:hover {
+    box-shadow: 2px 2px 13px #0000004b;
+}

@@ -1,0 +1,157 @@
+div.gallery {
+    margin: 50px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 300px;
+    height: 300px;
+  }
+  img.small-card-img {
+    margin: 11px 0px 0px 26px;
+max-width: 200px;
+}
+.ratingImg {
+  height: 30px;
+  width: 145px;
+}
+#lista
+{
+  margin-top: 100px;
+}
+.html1
+{
+  max-width: 100%;
+  overflow-x: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.noOutlineBtn:focus{
+  outline: none;
+}
+
+.homeLayoutRes {
+  background-image: url(/assets/poluprovidnaBez.png);
+  width: 12cm;
+  height: 12cm;
+  padding-top: 5mm;
+  padding-left: 5mm;
+  padding-right: 5mm;
+  overflow-x: hidden;
+}
+.col-sm-12
+{
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+  #pa
+{
+    height: 90px;
+}
+#nina
+{
+  width: 480px;
+  height: 120px;
+}
+  #proba
+{
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  text-align: right;
+  margin-top: 20px;
+}
+.card-smallcard:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 13px #000000a2;
+}
+  div.gallery:hover {
+    border: 1px solid #777;
+  }
+  
+  div.gallery img {
+    width: 100%;
+    height: auto;
+  }
+  
+  div.desc {
+    padding: px;
+    text-align: center;
+  }
+  
+  .search
+  {
+    margin: auto;
+    width: 50%;
+    border: 1px solid blue;
+    padding: 10px;
+    text-align: center;
+    background-color: lightblue;
+  }
+.card-smallcard {
+    border-radius: 20px !important;
+    margin: 20px 0px;
+    border: none !important;
+    box-shadow: 1px 1px 10px #0000004a;
+}
+.card-header-smallcard {
+		border-radius: 20px 20px 0px 0px !important;
+    padding: 5px 20px !important;
+    background: none !important;
+		border: none !important;
+		font-size: 20px;
+}
+
+.card-footer-smallcard {
+    border-radius: 0px 0px 20px 0px !important;
+		border: none !important;
+		padding: .55rem 1.25rem !important;
+		font-size: 15px;
+		text-transform: capitalize;
+	display: block;
+	font-style: normal;
+  font-weight: 600;
+}
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+  cursor: pointer;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.carExpandImg {
+  width: 5cm;
+  height: 35mm;
+}
+

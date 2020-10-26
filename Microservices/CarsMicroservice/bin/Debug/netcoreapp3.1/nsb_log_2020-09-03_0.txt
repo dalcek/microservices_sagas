@@ -1,0 +1,22 @@
+﻿2020-09-03 17:46:20.759 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 17:46:21.477 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 17:47:07.499 INFO  Received SeatReserved, CombinedReservationId = 02a0b6a3-2a86-4a06-bec5-12e63d99eead
+2020-09-03 17:56:47.302 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 17:56:48.016 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 17:58:42.290 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 17:58:43.276 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 17:59:11.269 INFO  Received SeatReserved, CombinedReservationId = 38f13593-bffa-4177-82d9-6b30581b98ba
+2020-09-03 18:46:54.578 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 18:46:55.161 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 18:48:01.496 INFO  Received SeatReserved, CombinedReservationId = 5d89c092-ef37-432e-bcf1-fc91b78cb57d
+2020-09-03 18:49:24.624 INFO  Received SeatReserved, CombinedReservationId = 
+2020-09-03 18:52:49.599 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 18:52:50.236 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 21:04:11.387 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 21:04:12.521 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 21:30:00.172 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 21:30:01.977 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 22:01:23.099 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 22:01:25.247 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 22:05:56.433 INFO  Received SeatReserved, CombinedReservationId = 4be4680a-6673-4c6a-9868-5a82462d35a0
+2020-09-03 22:06:00.851 INFO  Received SeatReserved, CombinedReservationId = 

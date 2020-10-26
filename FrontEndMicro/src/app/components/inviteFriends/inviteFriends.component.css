@@ -1,0 +1,239 @@
+.modal-header
+{
+    background-color: slategray;
+}
+.modal-footer
+{
+    background-color: slategray;
+}
+#btn1
+{
+    width: 100px;
+    background-color: rgb(121, 202, 202);
+    font-weight: bold;
+}
+.modal-body
+{
+    background-image: linear-gradient(rgb(65, 65, 223), rgb(71, 190, 71));
+    text-align: center;
+    height: 500px;
+    width: auto;
+}
+.modal-title
+{
+    font-size: larger;
+    font-style: italic;
+}
+.lb 
+{
+    text-align: center;
+    font-size: larger;
+}
+#un
+{
+    width: 150;
+}
+#password
+{
+    width: 150;
+}
+.signupB
+{
+    font-size: 25px;
+    height: 50px;
+}
+table, th, td {
+    border: 1px transparent;
+}
+  section{
+    margin: 100px;
+  }
+  td.trseat
+  {
+      background-color: wheat;
+      color: rgb(226, 38, 38);
+      max-height: 10%;
+  }
+  .tabela td
+  {
+    text-align: center;
+  }
+  .tabela2
+  {
+    width: 100%;
+  }
+  .tabela2 td{
+    background-color: darkseagreen;
+  }
+  .table3 td{
+    background-color: darkseagreen;
+  }
+  .table3{
+    width: 100px;
+  }
+  #s2
+  {
+    height: 400px;
+    overflow: hidden;
+    width: 100%;
+  }
+  #div1
+  {
+    float: left;
+  }
+  .div3
+  {
+    width: 10%;
+    float: center;
+  }
+  #div2
+  {
+    float: left;
+    width: 200px;
+    margin-right: 500px;
+  }
+  .tabela td.invite
+  {
+    background-image: transparent;
+  }
+  .nextstep
+  {
+    width: 100px;
+  }
+
+  h1{
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-style: bold;
+    text-align: center;
+    height: 50px;
+  }
+  table{
+    width:100%;
+    table-layout: fixed;
+    font-size: 15px;
+  }
+  #stops
+  {
+      font-weight: bold;
+      font-size: 20px;
+  }
+
+  .tbl-header{
+    background-color: rgba(255,255,255,0.3);
+   }
+   .s
+   {
+    background-image: linear-gradient(rgb(65, 65, 223), rgb(71, 190, 71));
+   }
+   .bodycontent
+  {
+    overflow-y:scroll;
+    overflow-x: hidden;
+  }
+
+  .tbl-content{
+    height:550px;
+    overflow: auto;
+    margin-top: 0px;
+    border: 0px solid rgba(255,255,255,0.3);
+  }
+  th{
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 15px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  td{
+    padding: 15px;
+    text-align: left;
+    vertical-align:middle;
+    width: 13%;
+    font-weight: 30;
+    font-size: 15px;
+    color: #fff;
+    border-bottom: solid 0x rgba(255,255,255,0.1);
+  }
+  section{
+    margin: 100px;
+  }
+  td.trseat
+  {
+      background-color: wheat;
+      color: rgb(226, 38, 38);
+      max-height: 10%;
+  }
+  .tabela td
+  {
+    text-align: center;
+  }
+  .tabela2
+  {
+    width: 100%;
+  }
+  .tabela2 td{
+    background-color: darkseagreen;
+  }
+  .table3 td{
+    background-color: darkseagreen;
+  }
+  .table3{
+    width: auto;
+  }
+  #s2
+  {
+    height: 400px;
+    overflow: hidden;
+    width: 100%;
+  }
+  #div1
+  {
+    float: left;
+  }
+  .div3
+  {
+    width: 20%;
+    float: right;
+    margin-right: 350px;
+  }
+  #div2
+  {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin-right: 380px;
+  }
+  .tabela td.invite
+  {
+    background-image: transparent;
+  }
+  .nextstep
+  {
+    margin-left: 90mm;
+    margin-bottom: 10mm;
+    width: 100px;
+  }
+  .nextstep2
+  {
+    margin-left: 30mm;
+    margin-top: 20mm;
+    width: 100px;
+  }
+  .tabela th
+  {
+    text-align: center;
+  }
+  .tabela
+  {
+    width: 60%;
+  }
+  td.trseat:hover
+  {
+      background-color:violet;
+  }
+  
+

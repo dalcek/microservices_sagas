@@ -1,0 +1,104 @@
+<div class="modal-header">
+    <h4 class="modal-title">Invite friends</h4>
+  </div>
+  <div class="modal-body" >
+        <div [hidden]="this.prikazan" class="div1">
+          <table class="tabela" cellpadding="0" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th>First name</th>
+                      <th>Last name</th>
+                      <th>Invite</th>
+                  </tr>
+              </thead>
+            <tbody>
+                <tr>
+                   <td>Stanka</td>
+                   <td>Kosutic</td>
+                   <td><input type="checkbox"></td>
+               </tr>
+    
+               <tr>
+                <td>Nina</td>
+                <td>Sarenac</td>
+                <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>Marko</td>
+                    <td>Jankovic</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+           </tbody>
+          </table>
+        </div>
+        <div id="div2" [hidden]="this.prikazan">
+           <table class="tabela2" style="display: inline-block;" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Invited:</th>
+                </tr>
+            </thead>
+          <tbody class="bodycontent">
+              <tr>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+             </tr>
+             <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="invite">
+                <td></td>
+                <td class="invite"><button>Invite</button></td>
+                <td></td>
+            </tr>
+         </tbody>
+          </table>
+        
+          
+           <button class="nextstep" (click)="klik()">Next step</button>
+        </div>
+        <div class="div3" [hidden]="!this.prikazan">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <table class="table3">
+                <thead>
+                    <tr>
+                        <th>Passenger {{this.passengersData}} of {{this.flight.numOfPassengers}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First name:</td><td><input type="text" name="firstname" formControlName="FirstName"></td>
+                    </tr>
+                    <tr>
+                        <td>Last name:</td><td><input type="text" name="lastname" formControlName="LastName"></td>
+                    </tr>
+                    <tr>
+                        <td>Contact:</td><td><input type="text" name="contact" formControlName="Contact"></td>
+                    </tr>
+                    <tr>                 
+                        <td>
+                        <form action="">
+                            <input type="radio" name="gender" value="male"> Male<br>
+                            <input type="radio" name="gender" value="female"> Female<br>
+                          </form>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <br>
+                <button [disabled]="!registerForm.valid" class="btn btn-success pull-right" class="submit" [hidden]="this.finished">Next step</button>
+            </table>  
+        </form>
+            <button class="nextstep2" [hidden]="!this.finished">Finish</button>
+        </div>    
+      
+  </div>
+  

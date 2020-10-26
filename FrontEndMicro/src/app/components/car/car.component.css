@@ -1,0 +1,3 @@
+.noOutlineBtn:focus{
+    outline: none;
+}

@@ -1,0 +1,50 @@
+.modal-header
+{
+    background-color: slategray;
+}
+.modal-footer
+{
+    background-color: slategray;
+}
+#btn1
+{
+    width: 100px;
+    background-color: rgb(121, 202, 202);
+    font-weight: bold;
+    color: rgb(75, 5, 54);;
+}
+.modal-body
+{
+    background-color: rosybrown;
+    text-align: center;
+    height: 380px;
+}
+.modal-title
+{
+    font-size: larger;
+    font-style: italic;
+    color: rgb(75, 5, 54);
+}
+.lb 
+{
+    text-align: center;
+    font-size: larger;
+    color: rgb(75, 5, 54);
+}
+#un
+{
+    width: 150;
+}
+#password
+{
+    width: 150;
+}
+.signupB
+{
+    background-color: rgb(204, 14, 61);
+    font-size: 25px;
+    height: 50px;
+}
+table, th, td {
+    border: 1px transparent;
+}

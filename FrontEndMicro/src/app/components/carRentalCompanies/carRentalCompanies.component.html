@@ -1,0 +1,68 @@
+<div style="background-image: url(./assets/rentaCarBg.jpg); background-size: 100% 100%; height: 17cm; width: 100%; padding-left: 4cm; padding-top: 8cm;">
+    <div class=" darkBg card card-smallcard2" style="width: fit-content; padding: 10mm;">
+        <form [formGroup]="searchCompaniesForm">
+            <p>Search companies</p>
+            <mat-form-field style="width: 75mm;">
+                <mat-label>Company Name</mat-label>
+                <input formControlName="companyName" matInput>
+            </mat-form-field>
+            <mat-form-field style="width: 75mm;">
+                <mat-label>Location</mat-label>
+                <input formControlName="location" matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field style="width: 75mm;">
+                <mat-label>From</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="from">
+                <mat-datepicker-toggle matSuffix [for]="picker1">
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field style="width: 75mm;">
+                <mat-label>To</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="to">
+                <mat-datepicker-toggle matSuffix [for]="picker2">
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button style="background-color: rgb(71, 62, 56); color: white;" (click)="searchCompanies()">Search</button>
+        </form>
+        
+        
+        
+    </div>
+    
+</div>
+<div class="row" style="padding: 1cm; background-color:rgb(216, 206, 201); height: fit-content;">
+    <div id="{{company.id}}" class="col-sm-12 col-md-6" routerLink="/carCompanies/{{company.id}}/carCompany" *ngFor="let company of companies">
+        <div class="card card-smallcard" id="cardWidth">
+            <div class="row">
+                <div>
+                    <img id="pa" class="small-card-img" src="./assets/{{company.img}}" />
+                </div>
+                <div class="col-sm-12 col-md-12" id="proba">
+                    <strong class="card-header card-header-smallcard">{{company.name}}</strong>
+                    <br>
+                    <img [hidden]="company.rating !== 5" class="ratingImg" src="./assets/5star.png" />
+                    <img [hidden]="company.rating !== 4" class="ratingImg" src="./assets/4star.png" />
+                    <img [hidden]="company.rating !== 3" class="ratingImg" src="./assets/3star.png" />
+                    <img [hidden]="company.rating !== 2" class="ratingImg" src="./assets/2star.png" />
+                    <img [hidden]="company.rating !== 1" class="ratingImg" src="./assets/1star.png" />
+                    <img [hidden]="company.rating !== 0" class="ratingImg" src="./assets/nostar.png" />
+                    <br>
+                    <em>
+                        {{company.MainLocation}}
+                    </em>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div class="footerDiv">
+    <p>Kosutic Stanka PR17/2016</p>
+        <p>Sarenac Nikolina PR18/2016</p>
+        <p>Contact information:</p>
+        <p>E-mail: web2020tim1718@gmail.com</p>
+</div>

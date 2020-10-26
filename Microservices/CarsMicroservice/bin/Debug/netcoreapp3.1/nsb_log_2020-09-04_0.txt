@@ -1,0 +1,85 @@
+﻿2020-09-04 15:23:50.654 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 15:23:51.238 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 15:28:24.653 INFO  Received SeatReserved, CombinedReservationId = a284a7a5-daf3-4221-bb0d-5688a70f7933
+2020-09-04 17:06:53.161 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:06:54.124 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 17:16:23.887 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:16:24.675 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 17:21:47.700 INFO  Received SeatReserved, CombinedReservationId = e121f20c-b5fc-4418-ab09-b4019a49774d
+2020-09-04 17:24:17.140 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:24:18.358 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 17:26:15.777 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:26:16.602 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 17:30:06.858 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:30:08.409 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 17:32:22.185 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:32:23.458 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 17:39:28.806 INFO  Received SeatReserved, CombinedReservationId = b0ced756-aa06-4261-a71f-ad67bed55e2f
+2020-09-04 18:02:07.661 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:02:08.793 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 18:13:28.837 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:13:30.375 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 18:27:47.344 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:27:48.235 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 18:36:37.519 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:36:38.744 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 18:37:12.144 INFO  Received FlightCancelled
+2020-09-04 18:37:13.617 INFO  Immediate Retry is going to retry message '12902df7-a4e1-4cea-be63-ac2c0132d8cb' because of an exception:
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Cannot delete or update a parent row: a foreign key constraint fails (`CarsDB`.`ExtraAmenity`, CONSTRAINT `FK_ExtraAmenity_CarReservation_CarReservationId` FOREIGN KEY (`CarReservationId`) REFERENCES `CarReservation` (`Id`))
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Cannot delete or update a parent row: a foreign key constraint fails (`CarsDB`.`ExtraAmenity`, CONSTRAINT `FK_ExtraAmenity_CarReservation_CarReservationId` FOREIGN KEY (`CarReservationId`) REFERENCES `CarReservation` (`Id`))
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsyncAwaited(ValueTask`1 task) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ServerSession.cs:line 774
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ResultSet.cs:line 49
+   at MySql.Data.MySqlClient.MySqlDataReader.ActivateResultSet() in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlDataReader.cs:line 130
+   at MySql.Data.MySqlClient.MySqlDataReader.CreateAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlDataReader.cs:line 391
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\CommandExecutor.cs:line 62
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at CarsMicroservice.EventHandlers.FlightCancelledHandler.Handle(FlightCancelled message, IMessageHandlerContext context) in D:\faks\Microservices\CarsMicroservice\EventHandlers\FlightCancelledHandler.cs:line 57
+   at NServiceBus.InvokeHandlerTerminator.Terminate(IInvokeHandlerContext context) in /_/src/NServiceBus.Core/Pipeline/Incoming/InvokeHandlerTerminator.cs:line 22
+   at NServiceBus.LoadHandlersConnector.Invoke(IIncomingLogicalMessageContext context, Func`2 stage) in /_/src/NServiceBus.Core/Pipeline/Incoming/LoadHandlersConnector.cs:line 50
+   at NServiceBus.ScheduledTaskHandlingBehavior.Invoke(IIncomingLogicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/Scheduling/ScheduledTaskHandlingBehavior.cs:line 22
+   at NServiceBus.MutateIncomingMessageBehavior.InvokeIncomingMessageMutators(IIncomingLogicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/MessageMutators/MutateInstanceMessage/MutateIncomingMessageBehavior.cs:line 60
+   at NServiceBus.DeserializeMessageConnector.Invoke(IIncomingPhysicalMessageContext context, Func`2 stage) in /_/src/NServiceBus.Core/Pipeline/Incoming/DeserializeMessageConnector.cs:line 33
+   at NServiceBus.UnitOfWorkBehavior.InvokeUnitsOfWork(IIncomingPhysicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/UnitOfWork/UnitOfWorkBehavior.cs:line 40
+   at NServiceBus.UnitOfWorkBehavior.InvokeUnitsOfWork(IIncomingPhysicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/UnitOfWork/UnitOfWorkBehavior.cs:line 62
+   at NServiceBus.MutateIncomingTransportMessageBehavior.InvokeIncomingTransportMessagesMutators(IIncomingPhysicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/MessageMutators/MutateTransportMessage/MutateIncomingTransportMessageBehavior.cs:line 59
+   at NServiceBus.ProcessingStatisticsBehavior.Invoke(IIncomingPhysicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/Performance/Statistics/ProcessingStatisticsBehavior.cs:line 25
+   at NServiceBus.TransportReceiveToPhysicalMessageConnector.Invoke(ITransportReceiveContext context, Func`2 next) in /_/src/NServiceBus.Core/Pipeline/Incoming/TransportReceiveToPhysicalMessageConnector.cs:line 39
+   at NServiceBus.MainPipelineExecutor.Invoke(MessageContext messageContext) in /_/src/NServiceBus.Core/Pipeline/MainPipelineExecutor.cs:line 35
+   at NServiceBus.Transport.RabbitMQ.MessagePump.Process(BasicDeliverEventArgs message, Byte[] messageBody) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/MessagePump.cs:line 266
+Exception details:
+	Message type: Messages.Events.FlightCancelled
+	Handler type: CarsMicroservice.EventHandlers.FlightCancelledHandler
+	Handler start time: 2020-09-04 18:37:12:140326 Z
+	Handler failure time: 2020-09-04 18:37:13:603085 Z
+	Message ID: 12902df7-a4e1-4cea-be63-ac2c0132d8cb
+2020-09-04 18:37:13.657 INFO  Received FlightCancelled
+2020-09-04 18:37:24.962 INFO  Received FlightCancelled
+2020-09-04 18:37:27.305 INFO  Received FlightCancelled
+2020-09-04 18:37:29.019 INFO  Received FlightCancelled
+2020-09-04 18:37:30.089 INFO  Received FlightCancelled
+2020-09-04 18:37:31.593 INFO  Received FlightCancelled
+2020-09-04 18:40:26.219 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:40:27.040 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 18:41:53.485 INFO  Received SeatReserved, CombinedReservationId = c18fc650-3120-4e7c-a8aa-e655827bb73f
+2020-09-04 18:42:14.086 INFO  Received FlightCancelled
+2020-09-04 18:55:21.804 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:55:23.074 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-04 18:56:37.159 INFO  Received SeatReserved, CombinedReservationId = 28e41ba4-dc6e-4c50-9b6f-f4d9dadc26ad
+2020-09-04 18:56:59.075 INFO  Received FlightCancelled
+2020-09-04 18:58:53.670 INFO  Received FlightCancelled
+2020-09-04 18:58:55.347 INFO  Received FlightCancelled
+2020-09-04 18:58:56.843 INFO  Received FlightCancelled
+2020-09-04 19:02:32.901 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 19:02:34.071 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.

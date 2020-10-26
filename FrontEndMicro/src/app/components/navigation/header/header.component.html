@@ -1,0 +1,14 @@
+<mat-toolbar color="primary"  class="mat-elevation-z8">
+    <span><mat-icon>eco</mat-icon>Projekat</span>
+
+    <div class="spacer">
+        
+    </div>
+
+    <button class="toolbarBtn"  mat-button routerLink="">Home</button>
+    <button class="toolbarBtn"  mat-button routerLink="/airlines">Airlines</button>
+    <button class="toolbarBtn"  mat-button routerLink="/carCompanies">Rent-A-Car</button>
+    <button class="toolbarBtn" [hidden]="isLoggedIn==='true'" mat-raised-button color="accent" (click)="klik()">Log In</button>
+    <button class="toolbarBtn" [hidden]="isLoggedIn==='false'" mat-button color="accent" (click)="myprofile()">My Profile</button>
+    <button class="toolbarBtn" [hidden]="isLoggedIn==='false'" mat-raised-button color="accent" (click)="logout()" routerLink="">Log out</button>
+</mat-toolbar>

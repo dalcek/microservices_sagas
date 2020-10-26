@@ -1,0 +1,361 @@
+<div style="padding-left: 3mm; text-align: left; padding-top: 3mm; padding-bottom: 3mm;">
+  <br>
+  &nbsp;&nbsp;<button mat-raised-button color="accent" routerLink="/airlines/{{idA}}/airline">Back to airline</button>
+  <br>
+  <br>
+</div>
+<section class="s" style="width: 100%;">
+  <!--for demo wrap-->
+  <h1>Flight details</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <th class="imag"></th>
+          <th id="th4"></th>
+          <th id="th4">Departure date: {{flight.departureDate}} </th>
+          <th id="th4">From: {{flight.from.name}} <br> To: {{flight.to.name}}</th>
+          <th id="th4">Duration: {{flight.duration}}</th>
+          <th id="th4">Price: {{flight.price}}e </th>
+        </tr>
+        <tr *ngIf="flight.trip == 1">
+          <th id="th4">Return flight: </th>
+          <th id="th4"></th>
+          <th id="th4">Departure date: {{flight.povratniLet.departureDate}} </th>
+          <th id="th4">From: {{flight.povratniLet.from.name}} <br> To: {{flight.povratniLet.to.name}}</th>
+          <th id="th4">Duration: {{flight.povratniLet.duration}}</th>
+          <th id="th4">Price: {{flight.povratniLet.price}}e </th>
+          <th id="th4"></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <br>
+        <br>
+        <tr>
+          <td id="stops">Stops({{flight.stops.length}}):</td>
+        </tr>
+        <tr>
+          <td *ngFor="let stop of flight.stops" class="td1">
+            {{stop.name}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div id="flightContent" style="display: block;">
+  <div class="div3" style="margin-top: 15mm;">
+    <table class="table3">
+      <tbody>
+
+        <tr>
+          <td style="background-color: rgb(122, 218, 218);" class="boja"></td>
+          <td>taken</td>
+        </tr>
+
+        <tr>
+          <td style="background-color: lightyellow;" class="boja"></td>
+          <td> first </td>
+
+          <td></td>
+        </tr>
+        <tr>
+          <td style="background-color:wheat;" class="boja"></td>
+          <td> business </td>
+
+          <td></td>
+        </tr>
+        <tr>
+          <td style="background-color: lightsalmon;" class="boja"></td>
+          <td> economy </td>
+
+          <td></td>
+        </tr>
+        <br>
+        <br>
+        <br>
+        <tr>
+          <td>
+            <button *ngIf="!prikazan" mat-raised-button color="accent" class="noOutlineBtn" (click)="klik()"
+              click>Reserve</button>
+          </td>
+          <td *ngIf="!prikazan && isAdmin">
+            <div>Click on the seat to change availabillity.</div>
+            <mat-form-field>
+              <mat-label>Seat number:</mat-label>
+              <input matInput type="number" id="idseat">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Discount:</mat-label>
+              <input matInput type="number" id="iddis">
+            </mat-form-field>
+            <button mat-raised-button color="accent" class="noOutlineBtn" class="btn btn-success pull-right"
+              (click)="newTicket()">New ticket</button>
+          </td>
+        </tr>
+        <br>
+        <tr>
+          <td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div *ngIf="invited" style="margin-top: 250px;margin-left: 300mm;position: absolute;">
+    <form [formGroup]="registerForm2" (ngSubmit)="search()">
+      <mat-form-field>
+        <mat-label>Search:</mat-label>
+        <input matInput formControlName="Name">
+      </mat-form-field>
+      <button mat-raised-button color="accent" class="noOutlineBtn" id="btn">Find</button>
+    </form>
+    <table mat-table [dataSource]="dataSource2" multiTemplateDataRows class="mat-elevation-z8"
+      style="background-color: lightcyan; color: blue; width: 500px;">
+      <ng-container matColumnDef="fullName">
+        <th id="thh" mat-header-cell *matHeaderCellDef> First name </th>
+        <td mat-cell *matCellDef="let element" style="color: blue;"> {{element.fullName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="option">
+        <th id="thh" mat-header-cell *matHeaderCellDef> Option </th>
+        <td mat-cell *matCellDef="let element" style="color: blue;">
+          <button mat-raised-button color="accent" class="noOutlineBtn" class="btn btn-success pull-right"
+            (click)="inviteFriend(element.id)">Invite</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+      <tr class="j" mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+    </table>
+  </div>
+  <br>
+  <br>
+  <div style="height: 800px;">
+    <img src="./assets/seats.jpg" style="box-shadow: gray; position: absolute; margin-left: 50mm;" height="700px"
+      width="350px" />
+    <table
+      style=" text-align: center;position:absolute; height: 40px;width: 30px;margin-left: 82mm; margin-top: 200px;">
+      <tr *ngFor="let key of duzinareda">
+        <ng-container *ngFor="let key2 of brojkolona" style="padding-bottom: 3mm;padding-right:3mm">
+          <td *ngFor="let key1 of brojredovaukoloni" style="padding-bottom: 3mm;padding-right:3mm">
+
+            <div style="width: 5mm;" *ngIf="seats[key*4 + key1 + key2*2].taken"
+              style="background-color: rgb(122, 218, 218); color: red;">{{seats[key*4 + key1 + key2*2].id}}</div>
+            <div style="width: 5mm;" *ngIf="seats[key*4 + key1 + key2*2].isSelected"
+              style="background-color: gray; color: red;" (click)="klik2(seats[key*4 + key1 + key2*2].id)">
+              {{seats[key*4 + key1 + key2*2].id}}</div>
+            <div style="width: 5mm;" class="taken"
+              *ngIf="!seats[key*4 + key1 + key2*2].taken && !seats[key*4 + key1 + key2*2].isSelected && seats[key*4 + key1 + key2*2].type == 1"
+              (click)="klik2(seats[key*4 + key1 + key2*2].id)">{{seats[key*4 + key1 + key2*2].id}}</div>
+            <div style="width: 5mm;" class="taken2"
+              *ngIf="!seats[key*4 + key1 + key2*2].taken && !seats[key*4 + key1 + key2*2].isSelected && seats[key*4 + key1 + key2*2].type == 0"
+              (click)="klik2(seats[key*4 + key1 + key2*2].id)">{{seats[key*4 + key1 + key2*2].id}}</div>
+            <div style="width: 5mm;" class="taken3"
+              *ngIf="!seats[key*4 + key1 + key2*2].taken && !seats[key*4 + key1 + key2*2].isSelected && seats[key*4 + key1 + key2*2].type == 2"
+              (click)="klik2(seats[key*4 + key1 + key2*2].id)">{{seats[key*4 + key1 + key2*2].id}}</div>
+
+
+          </td>
+
+
+
+          <td>&nbsp;</td>
+        </ng-container>
+      </tr>
+    </table>
+    <div [hidden]="isLoggedIn==='true'" *ngIf="clicked"
+      style="position: absolute;display: flex; justify-content: center; margin-left: 250mm;margin-top: 150px;">
+      <table>
+        <tr>
+          <td align="center">
+            <h2>Available only for registered users.</h2>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <h3>You can make an account by clicking here</h3>
+          </td>
+        </tr>
+        <tr>
+          <td align="center"><button mat-raised-button color="accent" (click)="SignUp()">Sign Up</button>
+            <hr>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <h3>Or, if you already have an account</h3>
+          </td>
+        </tr>
+        <tr>
+          <td align="center"><button mat-raised-button color="accent" (click)="SignIn()">Sign In</button></td>
+        </tr>
+      </table>
+    </div>
+    <div class="div3" [hidden]="!prikazan" style="margin-left: 200mm; margin-top: 1mm; padding: 1cm; background-color: rgb(219, 231, 235); width: fit-content;">
+      <form [formGroup]="registerForm">
+        <table class="table3"
+          style="background-color: rgb(219, 231, 235); color: rgb(59, 37, 17); width: 15cm; padding-left: 1cm;">
+          <thead>
+            <tr>
+              <th style="background-color: rgb(219, 231, 235); color: rgb(59, 37, 17);">Passenger
+                {{this.passengersData}} of
+                {{this.numOfSelected}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <br>
+            <tr>
+              <td>
+                <mat-form-field>
+                  <mat-label>Full name:</mat-label>
+                  <input matInput placeholder="full name" formControlName="fullName"
+                    style="background-color: rgb(219, 231, 235); color: rgb(59, 37, 17);">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>E-mail:</mat-label>
+                  <input matInput formControlName="Contact" placeholder="e-mail"
+                    style="background-color: rgb(219, 231, 235); color: rgb(59, 37, 17);">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Passport:</mat-label>
+                  <input matInput formControlName="Passport" placeholder="passport number"
+                    style="background-color: rgb(219, 231, 235); color: rgb(59, 37, 17);">
+                </mat-form-field>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <button mat-raised-button color="accent" class="noOutlineBtn" class="btn btn-success pull-right"
+                  (click)="mydata()">My data</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button mat-raised-button color="accent" class="noOutlineBtn" class="btn btn-success pull-right"
+                  (click)="invite()">Invite</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button mat-raised-button color="accent" class="noOutlineBtn" class="btn btn-success pull-right"
+                  (click)="reset()">Clear</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button [disabled]="!registerForm.valid" mat-raised-button color="accent" class="noOutlineBtn"
+                  class="btn btn-success pull-right" [hidden]="this.finished" (click)="onSubmit()">Next seat</button>
+              </td>
+            </tr>
+          </tbody>
+          <br>
+        </table>
+      </form>
+      <br>
+      <button mat-raised-button color="accent" class="btn-success" class="btn btn-success pull-right"
+        [hidden]="!this.finished" (click)="finish()">Proceed with reservation</button>
+        <br>
+        <br>
+      <button mat-raised-button color="accent" class="noOutlineBtn" class="btn btn-success pull-right"
+        [hidden]="!prikazan" (click)="cancel()">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+<div id="finishContent" style="display: none; height: 30cm;">
+  <br>
+  <br>
+  <div style="display: flex; justify-content: center;">
+    <p>Almost done - We have saved your reservations details.</p>
+  </div>
+
+  <div style="display: flex; justify-content: center;">
+    <p>Would you like to rent a car during your trip?</p>&nbsp;
+    <p>Enjoy our discount on cars rented in your destination!</p>
+  </div>
+  <br>
+  <div style="display: flex; justify-content: center;">
+    <button mat-raised-button color="accent" class="btn-success" class="btn btn-success pull-right" (click)="car()">Rent
+      a car</button>&nbsp;
+  </div>
+  <br>
+  <div style="display: flex; justify-content: center;">
+    <button mat-raised-button color="accent" class="btn-success" class="btn btn-success pull-right"
+      (click)="pomocna()">No thank you, just confirm ticket reservation.</button>
+  </div>
+</div>
+
+<div id="carContent" style="display: none; height: 25cm;">
+  <div [hidden]="tableHidden2" style="margin-top: 100px; margin-left: 60px;">
+    <div style="display: flex; justify-content: center;">
+      <form [formGroup]="registerForm3">
+        <mat-form-field>
+          <mat-label>Search free cars till date:</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="Date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button color="accent" class="btn-success" class="btn btn-success pull-right"
+          (click)="searchcar()">Search</button>
+
+      </form>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+      <table [hidden]="tableHidden" style="width: fit-content;" mat-table [dataSource]="dataSource"
+        multiTemplateDataRows class="mat-elevation-z8">
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+          <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        </ng-container>
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+            <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              <div style="padding-bottom: 5mm;">
+                <img class="carExpandImg" src="./assets/{{element.image}}" />
+              </div>
+              <div class="example-element-description">
+                <img [hidden]="element.avrageRating !== 5" class="ratingImg" src="./assets/5star.png" />
+                <img [hidden]="element.avrageRating !== 4" class="ratingImg" src="./assets/4star.png" />
+                <img [hidden]="element.avrageRating !== 3" class="ratingImg" src="./assets/3star.png" />
+                <img [hidden]="element.avrageRating !== 2" class="ratingImg" src="./assets/2star.png" />
+                <img [hidden]="element.avrageRating !== 1" class="ratingImg" src="./assets/1star.png" />
+                <img [hidden]="element.avrageRating !== 0" class="ratingImg" src="./assets/nostar.png" />
+                <br>
+                Type: {{element.type}}
+                <br>
+                Passengers: {{element.passengers}}
+                <br>
+                Location: {{element.location}}
+                <br>
+                Total price: {{element.price}}
+              </div>
+              <div style="display: flex; padding-bottom: 5mm;">
+                <button style="align-self:flex-end" mat-raised-button color="accent"
+                  (click)="RentACar(element)">Rent</button>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+          [class.example-expanded-row]="expandedElement === element"
+          (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div id="finishAllContent" style="display: none;">
+  <div style="display: flex; justify-content: center;">
+    <p>You have successfully sent a request for reservation!</p>
+  </div>
+  <div style="display: flex; justify-content: center;">
+    <p>Information on reservation status can be found on your profile.</p>
+  </div>
+</div>

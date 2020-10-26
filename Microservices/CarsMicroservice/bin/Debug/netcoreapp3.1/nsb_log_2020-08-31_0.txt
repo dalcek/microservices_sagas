@@ -1,0 +1,1 @@
+﻿2020-08-31 21:48:53.053 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info

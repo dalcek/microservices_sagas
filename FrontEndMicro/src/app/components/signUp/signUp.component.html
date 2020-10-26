@@ -1,0 +1,126 @@
+<div class="modal-header">
+    <h4 class="modal-title">Sign up</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body" style="background-color: transparent;">
+    <mat-horizontal-stepper [linear]="false" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Account</ng-template>
+                <mat-form-field>
+                    <mat-label>E-mail</mat-label>
+                    <input matInput formControlName="email" placeholder="example@domain.com" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" required>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" type="password" required>
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-label>Confirm password</mat-label>
+                    <input matInput formControlName="confirmPassword" type="password" required>
+                </mat-form-field>
+                <br>
+                <div>
+                    <button mat-raised-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Personal</ng-template>
+                <mat-form-field>
+                    <mat-label>Full name</mat-label>
+                    <input matInput formControlName="fullName" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="address">
+                </mat-form-field>
+                <br>
+                <mat-form-field >
+                    <mat-label>Passport</mat-label>
+                    <input matInput formControlName="passport" minlength="8" maxlength="8">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Phone number</mat-label>
+                    <input matInput formControlName="phoneNumber" title="input format: xxx/xxxxxxx" placeholder="xxx/xxxxxxx" pattern="^[0-9]{3}\/[0-9]{7}$">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Date of birth</mat-label>
+                    <input matInput formControlName="dateOfBirth" title="input format: mm.dd.yyyy." placeholder="mm.dd.yyyy." pattern="(0[1-9]|1[0-2])\.(0[1-9]|1\d|2\d|3[01])\.((19|20)\d{2})\.$">
+                </mat-form-field>
+                <br>
+                <div>
+                    <button mat-raised-button matStepperPrevious>Previous</button>
+                    &nbsp;&nbsp;
+                    <button mat-raised-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Confirm</ng-template>
+            <div style="display: flex; justify-content: center;">
+                <br>
+                <table>
+                    <tr>
+                        <td>
+                            Username:&nbsp;&nbsp;{{firstFormGroup.value.username}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            E-mail:&nbsp;&nbsp;{{firstFormGroup.value.email}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Full name:&nbsp;&nbsp;{{secondFormGroup.value.fullName}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Address:&nbsp;&nbsp;{{secondFormGroup.value.address}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Passport:&nbsp;&nbsp;{{secondFormGroup.value.passport}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Phone number:&nbsp;&nbsp;{{secondFormGroup.value.phoneNumber}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Date of birth:&nbsp;&nbsp;{{secondFormGroup.value.dateOfBirth}}
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+            <br><br>
+            <div style="display: flex; justify-content: center;">
+                <br>
+                <button mat-raised-button matStepperPrevious>Previous</button>&nbsp;&nbsp;&nbsp;
+                <button mat-raised-button color="accent" [disabled]="!secondFormGroup.valid || !firstFormGroup.valid" (click)="Submit()">Confirm & Register</button>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <p id="regError" style="display: none;">Error</p>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
+<div class="modal-footer">
+    <br>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
+</div>

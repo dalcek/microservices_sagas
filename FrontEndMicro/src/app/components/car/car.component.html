@@ -1,0 +1,56 @@
+<form style="overflow-x: hidden;">
+        <table style="height: 9cm; width: 6cm; margin-top: 5mm;">
+                <tr>
+                        <td style="padding-right: 15px;">
+                                <mat-form-field>
+                                        <mat-label>Pick up location</mat-label>
+                                        <input matInput placeholder="City or airport">
+                                </mat-form-field>
+                        </td>
+                        <td>
+                                <mat-form-field style="width: 47mm;">
+                                        <mat-label>Pick up date</mat-label>
+                                        <input matInput [matDatepicker]="picker">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                        </td>
+                </tr>
+                <tr>
+                        <td style="padding-right: 15px;">
+                                <mat-form-field>
+                                        <mat-label>Return location</mat-label>
+                                        <input matInput placeholder="Return to same location">
+                                </mat-form-field>
+                        </td>
+                        <td>
+                                <mat-form-field style="width: 47mm;">
+                                        <mat-label>Return date</mat-label>
+                                        <input matInput [matDatepicker]="picker">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                        </td>
+                        <td>
+                </tr>
+
+                <tr>
+                        <td>
+                                <mat-form-field>
+                                        <mat-label>Car type</mat-label>
+                                        <mat-select>
+                                                <mat-option *ngFor="let type of types" [value]="type.value">
+                                                        {{type.viewValue}}
+                                                </mat-option>
+                                        </mat-select>
+                                </mat-form-field>
+                        </td>
+                </tr>
+                <tr>
+                        <td></td>
+                        <td style="padding-left: 2cm;">
+                                <button mat-raised-button color="accent" class="noOutlineBtn">Search</button>
+                        </td>
+                </tr>
+        </table>
+</form>

@@ -1,0 +1,2 @@
+﻿2020-09-01 07:56:12.220 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-01 08:51:32.706 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info

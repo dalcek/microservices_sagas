@@ -1,0 +1,301 @@
+.hh
+{
+    width: 460px;
+    height: 223px;
+    font-size: 10px;
+}
+#slika:hover
+{
+    background-color: lightblue;
+}
+.image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  .noOutlineBtn:focus{
+    outline: none;
+  }
+  .col-sm-12
+  {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .scrol
+  {
+    overflow-x: scroll;
+  }
+    
+tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+    cursor: pointer;
+}
+  
+tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+}
+  
+.example-element-row td {
+    border-bottom-width: 0;
+}
+  
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+  
+.example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+}
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+
+.example-element-description {
+    padding: 16px;
+}
+  
+.example-element-description-attribution {
+    opacity: 0.5;
+}
+.ds
+{
+  height: 5cm;
+  width: 15cm;
+  margin-top: 10mm; 
+  margin-left: 12mm;
+}
+
+.search
+{
+  margin: auto;
+  height: fit-content; 
+  width: fit-content;
+  padding: 10px;
+  text-align: center;
+  border: lightgray;
+  background-color: #C8C8C8; box-shadow: 1px -1px 10px #000000de; 
+  display: flex;
+}
+.naslov{
+    font-weight: bold;
+    color: rgb(141, 139, 133);
+    font-style: italic;
+    font-size: large;
+    text-align: justify;
+    text-align: center;
+    padding: 8px;
+    background-color: rgb(229, 242, 247);
+    margin-top: 10mm;
+  }
+  .card-destinacija-teaser {
+    height: 100px;
+        font-size: 14px;
+    font-weight: 300;
+    margin: 20px 20px 0px 0px;
+  }
+  #rcorners3 {
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px; 
+    width: 200px;
+    height: 150px;  
+  }
+  .card-destinacija-teaser {
+    height: 100px;
+        font-size: 14px;
+    font-weight: 300;
+    margin: 20px 20px 0px 0px;
+  }
+  
+  .ratingImg {
+      height: 30px;
+      width: 145px;
+  }
+  
+  .mapImg{
+      width: 25cm;
+      height: 7cm;
+  }
+  
+  table {
+      width: 100%;
+  }
+    
+  tr.example-detail-row {
+      height: 0;
+  }
+    
+  tr.example-element-row:not(.example-expanded-row):hover {
+      background: whitesmoke;
+      cursor: pointer;
+  }
+    
+  tr.example-element-row:not(.example-expanded-row):active {
+      background: #efefef;
+  }
+    
+  .example-element-row td {
+      border-bottom-width: 0;
+  }
+    
+  .example-element-detail {
+      overflow: hidden;
+      display: flex;
+  }
+    
+  .example-element-diagram {
+      min-width: 80px;
+      border: 2px solid black;
+      padding: 8px;
+      font-weight: lighter;
+      margin: 8px 0;
+      height: 104px;
+  }
+    
+    .example-element-symbol {
+      font-weight: bold;
+      font-size: 40px;
+      line-height: normal;
+    }
+    
+  .example-element-description {
+      padding: 16px;
+  }
+    
+  .example-element-description-attribution {
+      opacity: 0.5;
+  }
+  
+  .carExpandImg {
+      width: 5cm;
+      height: 35mm;
+  }
+  
+  th.mat-sort-header-sorted {
+      color: black;
+  }
+  .j:hover{
+    background-color: lightblue;
+  }
+  .footerDiv {
+      background-color: #8c9ba2;
+      width: 100%;
+      height: 225px;
+      padding-top: 2cm;
+      padding-bottom: 2cm;
+  }
+    
+  table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+  }
+  table.blueTable tbody td {
+    font-size: 16px;
+    color: #2A2029;
+  }
+  table.blueTable tr:nth-child(even) {
+    background: #E9D1D9;
+  }
+  table.blueTable tr:nth-child(even):hover {
+    background-color: lightblue;
+  }
+  table.blueTable thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+  }
+  table.blueTable thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+  }
+  table.blueTable thead th:first-child {
+    border-left: none;
+  }
+  
+  table.blueTable tfoot {
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #D0E4F5;
+    background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    border-top: 0px solid #444444;
+  }
+  html {
+    max-width: 100%;
+  }
+  .image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  .tr1:hover
+  {
+      background-color: lightblue;
+  }
+
+  .hh
+  {
+      width: 390px;
+      height: 223px;
+  }
+  .naslov2{
+    font-weight: bold;
+    font-style: italic;
+    font-size: large;
+    margin-left: 50;
+  }
+  div.desc {
+    padding: px;
+    text-align: center;
+  }
+  .dugme
+  {
+        width: 100px;
+        height: 60px;
+        background-color: #FEB818;
+        color: black;
+        font-weight: bold;
+  }
+  #btn1
+  {
+    text-align: center;
+  }
+  .search
+  {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+    border: lightgray;
+    background-color: lightgray;
+  }
+
+
+  .noOutlineBtn:focus{
+    outline: none;
+  }
+  .col-sm-12
+  {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }

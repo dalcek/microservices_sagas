@@ -1,0 +1,202 @@
+table {
+    width: 100%;
+}
+  
+tr.example-detail-row {
+    height: 0;
+}
+  
+tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+    cursor: pointer;
+}
+  
+tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+}
+  
+.example-element-row td {
+    border-bottom-width: 0;
+}
+  
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+.rating > span:hover:before {
+  content: "\2605";
+  position: absolute;
+}
+.rating {
+ unicode-bidi: bidi-override;
+ direction: rtl;
+}
+.rating {
+ unicode-bidi: bidi-override;
+ direction: rtl;
+}
+.rating > span {
+ display: inline-block;
+ position: relative;
+ width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+  content: "\2605";
+  position: absolute;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+  content: "\2605";
+  position: absolute;
+}
+.example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+}
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+.example-element-description {
+    padding: 16px;
+}
+  
+.example-element-description-attribution {
+    opacity: 0.5;
+}
+
+.carExpandImg {
+    width: 55mm;
+    height: 45mm;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+.j:hover{
+  background-color: lightblue;
+}
+.footerDiv {
+    background-color: #8c9ba2;
+    width: 100%;
+    height: 225px;
+    padding-top: 2cm;
+    padding-bottom: 2cm;
+}
+  
+table.blueTable td, table.blueTable th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.blueTable tbody td {
+  font-size: 16px;
+  color: #2A2029;
+}
+table.blueTable tr:nth-child(even) {
+  background: #E9D1D9;
+}
+table.blueTable tr:nth-child(even):hover {
+  background-color: lightblue;
+}
+table.blueTable thead {
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  border-bottom: 2px solid #444444;
+}
+table.blueTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #D0E4F5;
+}
+table.blueTable thead th:first-child {
+  border-left: none;
+}
+
+table.blueTable tfoot {
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #D0E4F5;
+  background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  border-top: 0px solid #444444;
+}
+html {
+  max-width: 100%;
+}
+.image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.tr1:hover
+{
+    background-color: lightblue;
+}
+
+.hh
+{
+    width: 390px;
+    height: 223px;
+}
+.naslov2{
+  font-weight: bold;
+  font-style: italic;
+  font-size: large;
+  margin-left: 50;
+}
+div.desc {
+  padding: px;
+  text-align: center;
+}
+.dugme
+{
+      width: 100px;
+      height: 60px;
+      background-color: #FEB818;
+      color: black;
+      font-weight: bold;
+}
+#btn1
+{
+  text-align: center;
+}
+.search
+{
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+  border: lightgray;
+  background-color: lightgray;
+}
+
+#btn
+{
+  width: 15px;
+  height: 30px;
+  text-align: right;
+  margin-top: 50px;
+}
+.noOutlineBtn:focus{
+  outline: none;
+}
+.col-sm-12
+{
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}

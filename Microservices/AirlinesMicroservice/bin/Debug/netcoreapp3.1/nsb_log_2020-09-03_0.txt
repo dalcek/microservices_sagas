@@ -1,0 +1,20 @@
+﻿2020-09-03 17:46:20.786 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 17:46:21.484 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 17:56:46.542 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 17:56:47.399 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 17:58:41.941 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 17:58:42.916 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 18:46:54.824 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 18:46:55.469 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 18:47:49.877 INFO  Received CarReserved, CombinedReservationId = 5d89c092-ef37-432e-bcf1-fc91b78cb57d
+2020-09-03 18:49:26.835 INFO  Received CarReserved, CombinedReservationId = 
+2020-09-03 18:52:49.355 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 18:52:50.123 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 21:04:10.019 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 21:04:10.997 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 21:30:03.495 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 21:30:05.510 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 22:01:24.868 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-03 22:01:27.193 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-03 22:05:41.580 INFO  Received CarReserved, CombinedReservationId = 4be4680a-6673-4c6a-9868-5a82462d35a0
+2020-09-03 22:06:03.611 INFO  Received CarReserved, CombinedReservationId = 

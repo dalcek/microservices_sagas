@@ -1,0 +1,189 @@
+<body>
+    <div style="padding-left: 4mm; padding-top: 5mm; padding-bottom: 4mm;">
+        <button mat-fab color="accent" (click)="BackClick()">Back</button>
+        <hr>
+    </div>
+    <div style="padding: 1cm;">
+        <mat-horizontal-stepper [linear]="true" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Pick up details</ng-template>
+                    {{car.location}},&nbsp;&nbsp;
+                    <mat-form-field>
+                        <mat-label>Pick Up Address</mat-label>
+                        <input matInput formControlName="addr1" placeholder="Address" required>
+                    </mat-form-field>
+                    <br>
+                    {{dateFrom}},&nbsp;&nbsp;
+                    <mat-form-field style="width: 2cm">
+                        <mat-label>Hour</mat-label>
+                        <input matInput formControlName="timeH1" type="number" placeholder="HH" required max="12" min="0">
+                    </mat-form-field>
+                    <mat-form-field style="width: 2cm">
+                        <mat-label>Minutes</mat-label>
+                        <input matInput formControlName="timeM1" type="number" placeholder="MM" required max="59" min="0">
+                    </mat-form-field>
+                    <mat-form-field style="width: 2cm">
+                        <mat-label>AM/PM</mat-label>
+                        <select matNativeControl formControlName="time1" required>
+                          <option value="am">AM</option>
+                          <option value="pm">PM</option>
+                        </select>
+                    </mat-form-field>
+                    <br>
+                    <div>
+                      <button mat-raised-button matStepperNext>Next</button>
+                    </div>
+                  </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Drop off details</ng-template>
+                    {{returnLocation}},&nbsp;&nbsp;
+                    <mat-form-field>
+                        <mat-label>Address</mat-label>
+                        <input matInput formControlName="addr2" placeholder="City" >
+                    </mat-form-field>
+                    <br>
+                    {{dateTo}}&nbsp;&nbsp;,
+                    <mat-form-field style="width: 2cm;">
+                        <mat-label>Hour</mat-label>
+                        <input matInput formControlName="timeH2" type="number" placeholder="HH" required max="12" min="0">
+                    </mat-form-field>
+                    <mat-form-field style="width: 2cm">
+                        <mat-label>Minutes</mat-label>
+                        <input matInput formControlName="timeM2" type="number" placeholder="MM" required max="59" min="0">
+                    </mat-form-field>
+                    <mat-form-field style="width: 2cm">
+                        <mat-label>AM/PM</mat-label>
+                        <select matNativeControl formControlName="time2" required>
+                          <option value="am" selected>AM</option>
+                          <option value="pm">PM</option>
+                        </select>
+                    </mat-form-field>
+                    <br>
+                    <div>
+                      <button mat-raised-button matStepperPrevious>Previous</button>
+                      &nbsp;&nbsp;
+                      <button mat-raised-button matStepperNext>Next</button>
+                    </div>
+                  </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Extra amenities</ng-template>
+                <br>
+                <br>
+                <div *ngFor="let amenityGroup of showAmenities" style="display: flex; justify-content: center;">
+                    <div *ngFor="let amenity of amenityGroup" style="display: flex; justify-content: center; width: 17cm; margin: 1cm;">
+                        <img style="width: 6cm; height: 5cm;" src="./assets/{{amenity.image}}" />
+                        <div style="width: 4cm;">
+                            <br>
+                            <br>
+                            <strong>{{amenity.name}}</strong>
+                            <br>
+                            €{{amenity.price}}
+                            <br>
+                            <mat-slide-toggle [(ngModel)]="amenity.selected">Include</mat-slide-toggle>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button mat-raised-button matStepperPrevious>Previous</button>
+                    &nbsp;&nbsp;
+                    <button mat-raised-button matStepperNext>Next</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Details preview</ng-template>
+                <div style="display: flex; justify-content: center;">
+                    <table style="margin: 1cm">
+                        <tr>
+                            <th><h3> Vehicle information:</h3></th>
+                            
+                        </tr>
+                        <tr>
+                            <td>Brand:</td>
+                            <td>{{car.brand}}</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Model:</td>
+                            <td>{{car.model}}</td>
+                        </tr>
+                        <tr>
+                            <td>Year:</td>
+                            <td>{{car.year}}</td>
+                        </tr>
+                        <tr>
+                            <td>Type:</td>
+                            <td>{{car.type}}</td>
+                        </tr>
+                        <tr>
+                            <td>Passengers:</td>
+                            <td>{{car.passengers}}</td>
+                        </tr>
+                    </table>
+                    <table style="margin: 1cm;">
+                        <tr>
+                            <th><h3> Reservation information:</h3></th>
+                        </tr>
+                        <tr>
+                            <td>Renting from: </td>
+                            <td>dateFrom</td>
+                        </tr>
+                        <tr>
+                            <td>Renting to: </td>
+                            <td>dateTo</td>
+                        </tr>
+                        <tr>
+                            <td>Pick up details: </td>
+                            <td>{{car.location}},&nbsp;{{firstFormGroup.value.addr1}}&nbsp;at&nbsp;{{firstFormGroup.value.timeH1}}:{{firstFormGroup.value.timeM1}}&nbsp;{{firstFormGroup.value.time1}}</td>
+                        </tr>
+                        <tr>
+                            <td>Drop off details: </td>
+                            <td>{{returnLocation}},&nbsp;{{secondFormGroup.value.addr2}}&nbsp;at&nbsp;{{secondFormGroup.value.timeH2}}:{{secondFormGroup.value.timeM2}}&nbsp;{{secondFormGroup.value.time2}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total price: </td>
+                            <td>{{car.price}}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div style="display: flex; justify-content: center;">
+                    <br>
+                    <button mat-raised-button matStepperPrevious>Previous</button>
+                    <button mat-raised-button color="accent" (click)="Submit()">Confirm Reservation</button>
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <table>
+                        <tr>
+                            <td style="padding-top: 4mm; padding-left: 4mm;">
+                                <p id="rentError" style="color: red; display: none;"></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+    <!--<div [hidden]="isLoggedIn==='true'" style="display: flex; justify-content: center;">
+        <table>
+            <tr>
+                <td align="center"><h2>Available only for registered users.</h2></td>
+            </tr>
+            <tr>
+                <td align="center"><h3>You can make an account by clicking here</h3></td>
+            </tr>
+            <tr>
+                <td align="center"><button mat-raised-button color="accent" (click)="SignUp()">Sign Up</button><hr></td>
+            </tr>
+            <tr>
+                <td align="center"><h3>Or, if you already have an account</h3></td>
+            </tr>
+            <tr>
+                <td align="center"><button mat-raised-button color="accent" (click)="SignIn()">Sign In</button></td>
+            </tr>
+        </table>
+    </div> -->
+</body>

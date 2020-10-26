@@ -1,0 +1,39 @@
+﻿2020-09-07 13:59:58.772 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 13:59:59.414 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-07 14:02:14.316 INFO  Received SeatNotReserved, CombinedReservationId = 
+2020-09-07 14:03:26.679 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:03:27.681 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-07 14:03:35.012 INFO  Received SeatNotReserved, CombinedReservationId = 
+2020-09-07 14:06:15.800 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:06:16.370 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-07 14:06:21.341 INFO  Received SeatNotReserved, CombinedReservationId = 
+2020-09-07 14:09:57.022 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:09:58.146 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-07 14:10:04.285 INFO  Received SeatNotReserved, CombinedReservationId = 
+2020-09-07 14:15:42.025 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:15:42.832 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-07 14:22:55.689 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:22:56.237 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-07 14:23:31.339 INFO  Received CarReserved, CombinedReservationId = a9f2b3ac-7139-42fe-9a31-1a1daa120171
+2020-09-07 14:25:58.789 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:25:59.616 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-07 14:26:19.521 INFO  Received FlightCancelled
+2020-09-07 14:26:21.666 INFO  Received FlightCancelled
+2020-09-07 14:32:23.420 INFO  Received CarReserved, CombinedReservationId = ec156e22-0e3e-4c1d-a883-47c35c15aeb1
+2020-09-07 14:33:27.671 INFO  Received FlightCancelled
+2020-09-07 14:33:27.847 INFO  Received FlightCancelled
+2020-09-07 14:33:55.943 INFO  Received CarReserved, CombinedReservationId = 18032bfe-1ce8-4bc0-9c09-1db3fa7569e2
+2020-09-07 14:34:05.609 INFO  Received FlightCancelled
+2020-09-07 14:34:05.734 INFO  Received FlightCancelled
+2020-09-07 14:38:57.614 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:38:58.371 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-07 15:44:19.570 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 15:44:20.761 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-07 15:45:40.011 INFO  Received CarReserved, CombinedReservationId = 459f32c0-5f20-451f-8c8a-2d78531eb8fd
+2020-09-07 15:45:59.502 INFO  Received FlightCancelled
+2020-09-07 15:45:59.658 INFO  Received FlightCancelled
+2020-09-07 15:46:23.773 INFO  Received FlightCancelled
+2020-09-07 15:47:44.599 INFO  Received CarReserved, CombinedReservationId = 7457da8a-c062-48b7-afd0-24a4575b258f
+2020-09-07 15:48:02.449 INFO  Received FlightCancelled
+2020-09-07 15:49:14.585 INFO  Received FlightCancelled
+2020-09-07 15:52:17.430 INFO  Received FlightCancelled

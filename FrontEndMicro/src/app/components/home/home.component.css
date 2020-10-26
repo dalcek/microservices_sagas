@@ -1,0 +1,227 @@
+.homeLayout1 {
+    width: 100%;
+    margin-top: 0;
+    padding-top: 2cm;
+}
+.noOutlineBtn:focus{
+    outline: none;
+}
+
+.col-sm-12
+{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.separationDiv {
+    background-color: #8c9ba2;
+    width: 100%;
+    height: 250px;
+    margin-top: 3cm;
+    padding-top: 1cm;
+    padding-bottom: 2cm;
+}
+.scroll
+{
+    overflow-y: scroll;
+}
+#divflights
+{
+    width: 100%;
+    height: 40%;
+}
+.separationDivNumbers {
+    background-color: #8c9ba2;
+    width: 100%;
+    height: 250px;
+    margin-top: 3cm;
+    padding-top: 2cm;
+    padding-bottom: 2cm;
+}
+
+.homeLayout2 {
+    width: 100%;
+    height: 140px;
+}
+
+.homeLayout3 {
+    width: 100%;
+    height: 800px;
+}
+
+.homeLayoutRes {
+    background-image: url(/assets/poluprovidnaBez.png);
+    width: 12cm;
+    height: 12cm;
+    margin-left: 10cm;
+    margin-right: 4cm;
+    padding-top: 5mm;
+    padding-left: 1cm;
+    padding-right: 1cm;
+    overflow-x: hidden;
+}
+
+.displaySearchResDiv{
+    background-image: url(/assets/poluprovidnaBez.png);
+    height: 480px;
+    margin-top: 2cm;
+    margin-left: 5cm;
+    width: 30cm;
+    padding: 1cm;
+}
+
+.toolbar-flex {
+    flex: 1 0.5 auto;
+}
+
+.tableImage{
+    width: 4cm;
+    height: 3cm;
+}
+
+.card-smallcard {
+    border-radius: 20px !important;
+    border: none !important;
+    box-shadow: 1px 1px 10px #0000004a;
+    background-color: transparent;
+}
+
+.card-smallcard2 {
+    border-radius: 20px !important;
+    border: none !important;
+    box-shadow: 1px 1px 10px #0000004a;
+}
+
+.statisticsTable{
+    margin-left: 4cm;
+    width: 32cm;
+}
+
+.offersDiv {
+    background-color: burlywood;
+    width: 100%;
+    height: 500px;
+    padding-top: 1cm;
+    padding-bottom: 2cm;
+}
+
+.reviewsDiv {
+    background-color: honeydew;
+    width: 100%;
+    height: 400px;
+    padding-top: 2cm;
+    padding-bottom: 2cm;
+}
+
+.footerDiv {
+    background-color: #8c9ba2;
+    width: 100%;
+    height: 225px;
+    padding: 15mm;
+}
+
+.offersTable{
+    margin-left: 3cm;
+    padding: 5mm;
+    width: 34cm;
+}
+
+.cardTD{
+    padding: 1cm;
+    height: 6cm;
+}
+
+table {
+    width: 100%;
+}
+  
+tr.example-detail-row {
+    height: 0;
+}
+  
+tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+    cursor: pointer;
+}
+  
+tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+}
+  
+.example-element-row td {
+    border-bottom-width: 0;
+}
+  
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+  
+.example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+}
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+.example-element-description {
+    padding: 16px;
+}
+  
+.example-element-description-attribution {
+    opacity: 0.5;
+}
+
+.carExpandImg {
+    width: 5cm;
+    height: 35mm;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.ratingImg {
+    height: 45px;
+    width: 205px;
+}
+
+.fill {
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-image: url('src/assets/belgrade.jpg');
+    border-radius: 20px !important;
+    border: none !important;
+    box-shadow: 1px 1px 10px #0000007a;
+}
+
+.fill2 {
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-image: url('src/assets/paris.jpg');
+    border-radius: 20px !important;
+    border: none !important;
+    box-shadow: 1px 1px 10px #0000007a;
+}
+
+.fill3 {
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-image: url('src/assets/london.jpg');
+    border-radius: 20px !important;
+    border: none !important;
+    box-shadow: 1px 1px 10px #0000007a;
+}

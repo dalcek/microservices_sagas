@@ -1,0 +1,133 @@
+<html style="background-image: url('./assets/poz1.jpg');" class="html1">
+
+<div class="card card-smallcard2" style="width: 135mm; padding: 5mm; margin-top: 100px; margin-left: 3cm;">
+        <form [formGroup]="searchCompaniesForm">
+            <table>
+                <tr>
+                    <th colspan="2">Search for a company</th>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>From</mat-label>
+                            <input formControlName="airline1Name" matInput>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>To</mat-label>
+                            <input formControlName="airline2Name" matInput>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field >
+                            <mat-label>From</mat-label>
+                            <input matInput [matDatepicker]="picker1" formControlName="from">
+                            <mat-datepicker-toggle matSuffix [for]="picker1">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>To</mat-label>
+                            <input matInput [matDatepicker]="picker2" formControlName="to">
+                            <mat-datepicker-toggle matSuffix [for]="picker2">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button mat-raised-button (click)="searchCompanies()">Search</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        
+        
+        
+    </div>
+        <br>
+        <br>
+        <br>
+        <br>
+            
+        <form style="display: flex" [formGroup]="formControl" style="margin-left: 3cm;">
+            <mat-form-field >
+                <input matInput formControlName="idCompany">
+                <mat-placeholder>Company name</mat-placeholder>
+              </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="price" type="number" min="0">
+              <mat-placeholder>Price</mat-placeholder>
+            </mat-form-field>
+
+          </form>
+        <div style="margin-left: 3cm; overflow: auto; height: 500px; width: fit-content">
+
+            <table mat-table [dataSource]="dataSource" style="width: 1300px;" multiTemplateDataRows class="mat-elevation-z8">
+                <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+                    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                </ng-container>
+        
+                <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                <ng-container matColumnDef="expandedDetail">
+                    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                        <div class="example-element-detail"
+                            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                            <div style="padding-bottom: 5mm;">
+                                <img class="carExpandImg" src="/assets/logof.jpg"/>
+                            </div>
+                            <div class="example-element-description">
+                                From {{element.from.name}} to {{element.to.name}}<br><br>
+                                Duration: {{element.duration}}<br><br>
+                                Luggage: Weight - {{element.luggage.weight}} Dimensions - {{element.luggage.dimensions}} Quantity - {{element.luggage.quantity}} <br><br>
+                                Additional services: {{element.extra}}
+                        </div>
+                            <div style="display: flex; padding-bottom: 5mm;">
+                                <button style="align-self:flex-end" mat-raised-button color="accent" (click)="rent(element)">Rent</button>
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+                    [class.example-expanded-row]="expandedElement === element"
+                    (click)="expandedElement = expandedElement === element ? null : element">
+                </tr>
+                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+            </table>
+        </div>
+
+        <div class="row" id="lista">
+                <div id="hover1" class="col-sm-12 col-md-6 col-lg-4" *ngFor="let airline of airlines" routerLink="/airlines/{{airline.id}}/airline">                  
+                        <div class="card card-smallcard" id="nina">
+                                <div class="row">
+                                        <div>
+                                                <img id="pa" class="small-card-img" src="./assets/{{airline.img}}"/>                                       
+                                        </div>
+                                        <div class="col-sm-12 col-md-12" id="proba">
+                                                <strong class="card-header card-header-smallcard">{{airline.name}} </strong>
+                                                <br>
+                                                <img [hidden]="airline.rating !== 5" class="ratingImg" src="./assets/5star.png" />
+                                                <img [hidden]="airline.rating !== 4" class="ratingImg" src="./assets/4star.png" />
+                                                <img [hidden]="airline.rating !== 3" class="ratingImg" src="./assets/3star.png" />
+                                                <img [hidden]="airline.rating !== 2" class="ratingImg" src="./assets/2star.png" />
+                                                <img [hidden]="airline.rating !== 1" class="ratingImg" src="./assets/1star.png" />
+                                                <img [hidden]="airline.rating !== 0" class="ratingImg" src="./assets/nostar.png" />
+                                                <br>
+                                                <em>
+                                                        {{airline.address}}
+                                                </em>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</html>

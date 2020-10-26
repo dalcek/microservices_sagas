@@ -1,0 +1,255 @@
+<div style="padding-left: 4mm; padding-top: 5mm; padding-bottom: 4mm; background-color:rgb(216, 206, 201);">
+    <button mat-fab color="accent" routerLink="/carCompanies">Back</button>
+    <hr>
+</div>
+<div style="background-image: url(./assets/bannerCarC.jpg); width: 100%; height: 13cm; padding-top: 6cm;">
+    <div style="display: flex; justify-content: center;">
+        <img style="height: 3cm; max-width: 10cm; margin-right: 1cm; box-shadow: 1px 1px 10px #0000007c;"
+            src="./assets/{{company.img}}" />
+    </div>
+    <div style="display: flex; justify-content: center; padding-bottom: 5mm;">
+        <img [hidden]="company.rating !== 5" class="ratingImg" src="./assets/5star.png" />
+        <img [hidden]="company.rating !== 4" class="ratingImg" src="./assets/4star.png" />
+        <img [hidden]="company.rating !== 3" class="ratingImg" src="./assets/3star.png" />
+        <img [hidden]="company.rating !== 2" class="ratingImg" src="./assets/2star.png" />
+        <img [hidden]="company.rating !== 1" class="ratingImg" src="./assets/1star.png" />
+        <img [hidden]="company.rating !== 0" class="ratingImg" src="./assets/nostar.png" />
+    </div>
+</div>
+<div
+    style="background-color: #8c9ba2; box-shadow: 1px -1px 10px #000000de; display: flex; justify-content: center; margin-bottom: 0; padding-top: 8mm; padding-bottom: 8mm;">
+    <table style="padding-top: 7mm; padding-bottom: 7mm; width: 50%;">
+        <tr>
+            <td valign="top" align="right">
+                <img style="height: 6mm; width: 1cm;" src="./assets/nav1.png" />
+            </td>
+            <td style="width: fit-content; max-width: 20cm; padding-left: 5mm;">
+                <p>
+                    {{company.description}}
+                </p>
+            </td>
+            <td valign="bottom">
+                <img style="height: 6mm; width: 1cm;" src="./assets/nav2.png" />
+            </td>
+        </tr>
+    </table>
+    <br>
+</div>
+<div style="background: gainsboro; box-shadow: 1px 1px 10px #0000007c; height:auto; margin-top: 0; padding: 1cm;">
+    <table style="width: 100%;">
+        <tr>
+            <td valign="top">
+                <h1>{{company.name}}</h1>
+                <h3>
+                    <mat-icon>location_on</mat-icon>&nbsp;{{company.mainLocation.fullAddress}}
+
+                </h3>
+                <p>Branches:</p>
+                <p *ngFor="let addr of company.locations">&nbsp;&nbsp;-&nbsp;{{addr.fullAddress}}</p>
+            </td>
+            <td align="right" style="width: 1000px;">
+                <div style="box-shadow: 1px 1px 10px #0000004a;">
+                    <agm-map style="width: 1000px; height: 400px;" [latitude]="startLat" [longitude]="startLon"
+                        [zoom]="zoom">
+
+                        <agm-polyline [strokeColor]="polyline.color">
+                            <agm-polyline-point *ngFor="let point of polyline.path" [latitude]="point.latitude"
+                                [longitude]="point.longitude">
+                            </agm-polyline-point>
+                        </agm-polyline>
+
+                        <agm-marker [latitude]="company.mainLocation.latitude"
+                            [longitude]="company.mainLocation.longitude" [title]="company.name" [iconUrl]="busImgIcon"
+                            label="">
+                        </agm-marker>
+
+                        <agm-marker *ngFor="let addr of company.locations" [latitude]="addr.latitude"
+                            [longitude]="addr.longitude" [title]="company.name" [iconUrl]="busImgIcon" label="">
+                        </agm-marker>
+
+                    </agm-map>
+                </div>
+                <!--<img src="./assets/mapa.png" />-->
+            </td>
+        </tr>
+    </table>
+    <hr>
+
+    <div style="display: flex; justify-content: center;">
+        <div
+            style="height: fit-content; width: fit-content; background-color: white; margin-bottom: 1cm; box-shadow: 1px 1px 10px #0000004d; padding: 5mm; margin: 1cm;">
+            <form [formGroup]="searchCarsForm">
+                <mat-form-field>
+                    <mat-label>From</mat-label>
+                    <input id="dateFrom" matInput formControlName="dateFrom" [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field style="width: 8cm;">
+                    <mat-label>Location</mat-label>
+                    <mat-select formControlName="location">
+                        <mat-option
+                            value="{{company.mainLocation.fullAddress}}">
+                            {{company.mainLocation.fullAddress}}
+                        </mat-option>
+                        <mat-option *ngFor="let loc of company.locations"
+                            value="{{loc.fullAddress}}">{{loc.fullAddress}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+
+                <mat-form-field>
+                    <mat-label>To</mat-label>
+                    <input id="dateTo" matInput formControlName="dateTo" [matDatepicker]="picker2">
+                    <mat-datepicker-toggle matSuffix [for]="picker2">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field style="width: 8cm;">
+                    <mat-label>Return location</mat-label>
+                    <mat-select formControlName="returnLocation">
+                        <mat-option
+                            value="{{company.mainLocation.fullAddress}}">
+                            {{company.mainLocation.fullAddress}}
+                        </mat-option>
+                        <mat-option *ngFor="let loc of company.locations"
+                            value="{{loc.fullAddress}}">{{loc.fullAddress}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label>Brand</mat-label>
+                    <input id="brand" matInput formControlName="brand">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Model</mat-label>
+                    <input id="model" matInput formControlName="model">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Car type</mat-label>
+                    <mat-select formControlName="type">
+                        <mat-option *ngFor="let type of types" [value]="type.value">
+                            {{type.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Year</mat-label>
+                    <input type="number" id="year" matInput formControlName="year">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Passengers</mat-label>
+                    <input type="number" id="pass" matInput formControlName="passengers">
+                </mat-form-field>&nbsp;&nbsp;&nbsp;
+                <mat-label>Price&nbsp;</mat-label>
+                <mat-slider style="width: 7cm;" thumbLabel [displayWith]="formatLabel" tickInterval="50" min="1" max="600" formControlName="price"></mat-slider>
+                &nbsp;&nbsp;&nbsp;<button class="SearchBtn" mat-raised-button color="accent" type="submit"
+                                (click)="SearchTable()">Find</button>
+            </form>
+        </div>
+        <br>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <div [hidden]="loadingHidden">
+            <div class="spinner-grow" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div [hidden]="noResultsHidden">
+            <p>No available cars that fulfill specified requirements.</p>
+        </div>
+        <table [hidden]="tableHidden" style="width: fit-content;" mat-table [dataSource]="dataSource"
+            multiTemplateDataRows class="mat-elevation-z8">
+            <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+                <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+            </ng-container>
+
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                    <div class="example-element-detail"
+                        [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                        <div style="padding-bottom: 5mm;">
+                            <img class="carExpandImg" src="./assets/{{element.image}}" />
+                        </div>
+                        <div class="example-element-description">
+                            <img [hidden]="element.avrageRating !== 5" class="ratingImg" src="./assets/5star.png" />
+                            <img [hidden]="element.avrageRating !== 4" class="ratingImg" src="./assets/4star.png" />
+                            <img [hidden]="element.avrageRating !== 3" class="ratingImg" src="./assets/3star.png" />
+                            <img [hidden]="element.avrageRating !== 2" class="ratingImg" src="./assets/2star.png" />
+                            <img [hidden]="element.avrageRating !== 1" class="ratingImg" src="./assets/1star.png" />
+                            <img [hidden]="element.avrageRating !== 0" class="ratingImg" src="./assets/nostar.png" />
+                            <br>
+                            Type: {{element.type}}
+                            <br>
+                            Passengers: {{element.passengers}}
+                            <br>
+                            Total price for selected period: {{element.price}}
+                            <br>
+                            Additional discount can be claimed based on user points
+                        </div>
+                        <div style="display: flex; padding-bottom: 5mm;">
+                            <button style="align-self:flex-end" mat-raised-button color="accent"
+                                (click)="RentACar(element.id)">Rent</button>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+                [class.example-expanded-row]="expandedElement === element"
+                (click)="expandedElement = expandedElement === element ? null : element">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+    </div>
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+    <div style="display: flex; justify-content: center;">
+        <button mat-raised-button color="accent"(click)="ShowDiscountedDiv()">Show discounted cars</button>
+    </div>
+    
+    <div id="discountedDiv" style="display: none;">
+        <br>
+        <div style="display: flex; justify-content: center;">
+            <p>We offer 5% off when renting car together with a flight</p>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <p>Check out our options</p>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <table style="width: fit-content;">
+                <tr *ngFor="let disCar of discountedCars">
+                    <td style="padding: 5mm;">
+                        <img class="carExpandImg" src="./assets/{{disCar.image}}" />
+                    </td>
+                    <td  style="padding: 5mm;" valign="center">
+                        {{disCar.brand}}-{{disCar.model}}
+                    </td>
+                    <td  style="padding: 5mm;" valign="center">
+                        Original price:&nbsp;{{disCar.price}}
+                    </td>
+                    <td  style="padding: 5mm;" valign="center">
+                        Discounted price:&nbsp;{{disCar.price - (disCar.price * 5 / 100)}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div style="display: flex; justify-content: center;">
+            <button mat-raised-button color="accent"(click)="CloseDiscountedDiv()">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="footerDiv">
+    <p>Kosutic Stanka PR17/2016</p>
+        <p>Sarenac Nikolina PR18/2016</p>
+        <p>Contact information:</p>
+        <p>E-mail: web2020tim1718@gmail.com</p>
+</div>

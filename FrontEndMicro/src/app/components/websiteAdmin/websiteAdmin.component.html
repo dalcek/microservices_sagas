@@ -1,0 +1,494 @@
+<body style="background-color:transparent;">
+    <div [hidden]="loaded" style="height: 25cm; display: flex; justify-content: center; padding: 5cm;">
+        <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div [hidden]="!loaded">
+        <div [hidden]="user.changedPassword" style="width: 100%; height: 30cm; padding: 3cm">
+            <div style="display: flex; justify-content: center;">
+                <div>
+                    You must change password before proceeding
+                    <br>
+                    <form [formGroup]="ChangePasswordGroup">
+                        <mat-form-field>
+                            <mat-label>New password</mat-label>
+                            <input matInput formControlName="newPassword" type="password">
+                            <mat-error *ngIf="ChangePasswordGroup.controls['newPassword'].hasError('required')">
+                                New password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>Repeat new password </mat-label>
+                            <input matInput formControlName="repeatNewPassword" type="password">
+                            <mat-error *ngIf="ChangePasswordGroup.controls['repeatNewPassword'].hasError('required')">
+                                New password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>Current password</mat-label>
+                            <input matInput formControlName="oldPassword" type="password">
+                            <mat-error *ngIf="ChangePasswordGroup.controls['oldPassword'].hasError('required')">
+                                Current password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <br>
+                        <table>
+                            <tr>
+                                <td><button mat-raised-button (click)="ChangePassword()">Save</button></td>
+                                <td style="padding-top: 4mm; padding-left: 4mm;">
+                                    <p id="changePassError" style="color: red;"></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div>
+                    <p id="changePassError" style="display: none;"></p>
+                </div>
+            </div>
+
+        </div>
+        <div [hidden]="!user.changedPassword" style="width: 100%;">
+            <div style="background-color:whitesmoke; height:20cm; width: 7cm; float: left; padding: 5mm;">
+                <div style="background-color: gainsboro; height: 2cm;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td valign="center" align="center"><img style="width: 17mm; height: 17mm;"
+                                    src="./assets/avatar.png" /></td>
+                            <td valign="center" align="center">{{user.username}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <hr>
+                <table style="width: 100%;">
+                    <tr [hidden]="!user.mainAdmin" id="websiteAdministratorsRow" class="navRow"
+                        (click)="ShowWebAdministrators()">
+                        <td valign="center">
+                            <h3>&nbsp;Website Administrators</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                    <tr id="rentACarRow" class="navRow" (click)="ShowRentACar()">
+                        <td valign="center">
+                            <h3>&nbsp;Rent A Car&nbsp;&nbsp;&nbsp;</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                    <tr id="airlinesRow" class="navRow" (click)="ShowAirlines()">
+                        <td valign="center">
+                            <h3>&nbsp;Airlines&nbsp;&nbsp;&nbsp;</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                    <tr id="profileInfoRow" class="navRow" (click)="ShowProfileInfo()">
+                        <td valign="center">
+                            <h3>&nbsp;Profile Info</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                    <tr id="discountsRow" class="navRow" (click)="ShowDiscounts()">
+                        <td valign="center">
+                            <h3>&nbsp;Discounts</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div [hidden]="websitesAdministratorsHidden"
+                style="margin-left: 7cm; height: fit-content; min-height: 20cm; padding: 1cm; background-color: gainsboro;">
+                Current Website Administrators <br>
+                <div *ngFor="let admin of user.websiteAdministrators">
+                    <table>
+                        <tr>
+                            <td>
+                                <img style="height: 4cm; width: 4cm;" src="./assets/avatar.png" />
+                            </td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>{{admin.username}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{admin.fullname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{admin.email}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <mat-divider></mat-divider>
+                </div>
+                <br>
+                <button mat-raised-button (click)="ShowNewAdminDiv()">New Administrator</button>
+                <br>
+                <div [hidden]="hideNewAdminDiv">
+                    <form [formGroup]="newAdminGroup">
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" formControlName="pass">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Confirm password</mat-label>
+                            <input matInput type="password" formControlName="confirmPass">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Username</mat-label>
+                            <input matInput formControlName="username">
+                        </mat-form-field>
+
+                    </form>
+                    <button mat-raised-button type="submit" (click)="addUser()">Add</button>
+                    <button style="margin-left: 1cm;" mat-raised-button (click)="CloseNewAdminDiv()">Cancel</button>
+                </div>
+            </div>
+            <div [hidden]="rentACarHidden"
+                style="margin-left: 7cm; height: fit-content; min-height: 20cm; padding: 1cm; background-color: gainsboro;">
+                <div *ngFor="let company of user.rentAcars">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 20%;">{{company.name}}</td>
+                            <td style="width: 20%;">
+                                <div *ngFor="let admin of company.admins">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{admin}}<br>
+                                </div>
+
+                            </td>
+                            <td>
+                                <button style="margin: 1cm;" mat-raised-button (click)="OpenAddAdmin(company.id)">Add
+                                    admin</button>
+                            </td>
+                            <td>
+                                <div style="display:none" id="addAdmin{{company.id}}">
+                                    <mat-form-field>
+                                        <mat-label>Username</mat-label>
+                                        <input matInput required name="addAdmin{{company.id}}">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Email</mat-label>
+                                        <input matInput required name="addAdmin{{company.id}}">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Password</mat-label>
+                                        <input matInput required type="password" name="addAdmin{{company.id}}">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Confirm password</mat-label>
+                                        <input matInput required type="password" name="addAdmin{{company.id}}">
+                                    </mat-form-field>
+
+                                    <br>
+                                    <button mat-raised-button (click)="CloseAddAdmin(company.id)">Cancel</button>
+                                    &nbsp;&nbsp;
+                                    <button mat-raised-button (click)="AddAdmin(company.id)">Save</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <mat-divider></mat-divider>
+                </div>
+                <br>
+                <button mat-raised-button (click)="ShowNewCarCompanyDiv()">New</button>
+                <br>
+                <br>
+                <div id="newCarCompanyDiv" style="display: none;">
+                    <form [formGroup]="newCarCompanyGroup">
+                        <p>Register new company:</p>
+                        <mat-form-field>
+                            <mat-label>Full Company Name</mat-label>
+                            <input matInput formControlName="companyName">
+                        </mat-form-field>
+                        <p>Choose address on map</p>
+                        <p>Address:&nbsp;{{clickedAddress}}</p>
+
+                        <div>
+                            <agm-map style="width: 800px; height: 300px" [latitude]="clickedLat"
+                                [longitude]="clickedLon" [zoom]="zoom">
+                                <agm-polyline [strokeColor]="polyline.color">
+                                    <agm-polyline-point *ngFor="let point of polyline.path" [latitude]="point.latitude"
+                                        [longitude]="point.longitude">
+                                    </agm-polyline-point>
+                                </agm-polyline>
+
+                                <agm-marker [latitude]="clickedLat" [longitude]="clickedLon" [iconUrl]="marker" label=""
+                                    [markerDraggable]="true" (dragEnd)="mapClick2($event)">
+                                </agm-marker>
+                            </agm-map>
+                        </div>
+                        <br>
+                        <button mat-raised-button (click)="closeNewCarCompanyDiv()">Cancel</button>
+                        &nbsp;&nbsp;
+                        <button mat-raised-button (click)="registerCarCompany()">Save</button>
+                    </form>
+                </div>
+            </div>
+            <div [hidden]="airlineHidden"
+                style="margin-left: 7cm; height: fit-content; min-height: 20cm; padding: 1cm; background-color: gainsboro;">
+                <div *ngFor="let company of user.airlines">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 20%;">{{company.name}}</td>
+                            <td style="width: 20%;">
+                                <div *ngFor="let admin of company.admins">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{admin}}<br>
+                                </div>
+
+                            </td>
+                            <td>
+                                <button style="margin: 1cm;" mat-raised-button (click)="OpenAddAdmin2(company.id)">Add
+                                    admin</button>
+                            </td>
+                            <td>
+                                <div style="display:none" id="addAdminAir{{company.id}}">
+                                    <mat-form-field>
+                                        <mat-label>Username</mat-label>
+                                        <input matInput required name="addAdminA{{company.id}}">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Email</mat-label>
+                                        <input matInput required name="addAdminA{{company.id}}">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Password</mat-label>
+                                        <input matInput required type="password" name="addAdminA{{company.id}}">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Confirm password</mat-label>
+                                        <input matInput required type="password" name="addAdminA{{company.id}}">
+                                    </mat-form-field>
+
+                                    <br>
+                                    <button mat-raised-button (click)="CloseAddAdmin2(company.id)">Cancel</button>
+                                    &nbsp;&nbsp;
+                                    <button mat-raised-button (click)="AddAdmin2(company.id)">Save</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <mat-divider></mat-divider>
+                </div>
+                <br>
+                <button mat-raised-button (click)="ShowNewAirlineDiv()">New</button>
+                <br>
+                <br>
+                <div id="newAirlineDiv" style="display: none;">
+                    <form [formGroup]="newAirlineGroup">
+                        <p>Register new airline:</p>
+                        <mat-form-field>
+                            <mat-label>Airline</mat-label>
+                            <input matInput formControlName="companyName">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="address">
+                        </mat-form-field>
+
+                        
+                        <br>
+                        <button mat-raised-button (click)="closeNewAirlineDiv()">Cancel</button>
+                        &nbsp;&nbsp;
+                        <button mat-raised-button (click)="registerAirline()">Save</button>
+                    </form>
+                </div>
+            </div>
+            <div [hidden]="profileInfoHidden"
+                style="margin-left: 7cm; height: 20cm; padding: 1cm; background-color: gainsboro;">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Change Account Information
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <form [formGroup]="ChangeInformationGroup">
+                            <mat-form-field>
+                                <mat-label>Name</mat-label>
+                                <input formControlName="fullname" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>Birthday</mat-label>
+                                <input matInput formControlName="birthday" [matDatepicker]="picker1">
+                                <mat-datepicker-toggle matSuffix [for]="picker1">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+
+
+                            <br>
+
+                            <mat-form-field>
+                                <mat-label>Address</mat-label>
+                                <input formControlName="address" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>E-mail</mat-label>
+                                <input formControlName="email" matInput>
+                            </mat-form-field>
+
+                            <p>Please enter your password to confirm</p>
+
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input formControlName="passCurrent" type="password" matInput>
+                            </mat-form-field>
+                            <br>
+                            <table>
+                                <tr>
+                                    <td><button mat-raised-button (click)="changeInformation()">Save</button></td>
+                                    <td style="padding-top: 4mm; padding-left: 4mm;">
+                                        <p id="changeInfoError" style="color: red;"></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Change username
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <form [formGroup]="ChangeUsernameGroup">
+                            <mat-form-field>
+                                <mat-label>Username</mat-label>
+                                <input formControlName="username" matInput>
+                                <mat-hint *ngIf="usernameExists">Username already exists</mat-hint>
+                            </mat-form-field>
+                            <button mat-raised-button (click)="checkUsername()" style="margin-left: 3mm;">Check</button>
+
+                            <p>Please enter your password to confirm</p>
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input formControlName="currentPass" matInput type="password">
+                            </mat-form-field>
+                            <br>
+
+                            <table>
+                                <tr>
+                                    <td><button mat-raised-button (click)="changeUsername()">Save</button></td>
+                                    <td style="padding-top: 4mm; padding-left: 4mm;">
+                                        <p id="changeUsernameError" style="color: red;"></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Change password
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <form [formGroup]="ChangePasswordGroup">
+                            <mat-form-field>
+                                <mat-label>New password</mat-label>
+                                <input matInput formControlName="newPassword" type="password">
+                                <mat-error *ngIf="ChangePasswordGroup.controls['newPassword'].hasError('required')">
+                                    New password is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Repeat new password </mat-label>
+                                <input matInput formControlName="repeatNewPassword" type="password">
+                                <mat-error
+                                    *ngIf="ChangePasswordGroup.controls['repeatNewPassword'].hasError('required')">
+                                    New password is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Current password</mat-label>
+                                <input matInput formControlName="oldPassword" type="password">
+                                <mat-error *ngIf="ChangePasswordGroup.controls['oldPassword'].hasError('required')">
+                                    Current password is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </form>
+
+                        <br>
+                        <table>
+                            <tr>
+                                <td><button mat-raised-button (click)="ChangePassword()">Save</button></td>
+                                <td style="padding-top: 4mm; padding-left: 4mm;">
+                                    <p id="changePassError" style="color: red;"></p>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <div [hidden]="discountsHidden"
+                style="margin-left: 7cm; min-height: 20cm; padding: 1cm; background-color: gainsboro;">
+                <strong>User Tiers:</strong>
+                <br>
+                <form [formGroup]="DiscountChange">
+                    <p>Bronze Tier:</p>
+                    <mat-form-field>
+                        <mat-label>Bronze</mat-label>
+                        <input matInput type="number" formControlName="bronze" value="{{user.discount.bronzeTier}}"
+                            required>
+                    </mat-form-field>
+                    <br>
+                    <p>Silver Tier:</p>
+                    <mat-form-field>
+                        <mat-label>Silver</mat-label>
+                        <input matInput type="number" formControlName="silver" value="{{user.discount.silverTier}}"
+                            required>
+                    </mat-form-field>
+                    <br>
+                    <p>Gold Tier:</p>
+                    <mat-form-field>
+                        <mat-label>Gold</mat-label>
+                        <input matInput type="number" formControlName="gold" value="{{user.discount.goldTier}}"
+                            required>
+                    </mat-form-field>
+                    <br>
+                    <p>Discount percentage</p>
+                    <mat-form-field>
+                        <mat-label>Percent</mat-label>
+                        <input matInput type="number" formControlName="percent"
+                            value="{{user.discount.discountPercent}}" required>
+                    </mat-form-field>
+                    <p>Define discount percentage for users of a certain tier.</p>
+                    <button mat-raised-button (click)="SaveDiscountChange()">Save</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>

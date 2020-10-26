@@ -1,0 +1,41 @@
+﻿2020-09-02 15:31:12.045 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 15:36:47.071 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 15:36:47.698 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 15:47:39.615 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 15:47:40.441 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 15:50:01.645 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 15:50:02.113 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 15:52:00.232 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 16:21:15.131 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 16:21:16.261 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 16:23:58.823 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 17:13:20.053 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 17:13:20.956 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 17:21:27.840 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 17:21:28.586 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 17:22:50.852 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 17:23:55.798 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 17:23:56.477 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 17:25:23.920 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 17:30:12.495 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 17:30:13.478 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 18:24:29.909 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 18:24:30.499 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 18:28:17.902 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 18:28:18.674 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 18:29:35.521 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 18:30:27.405 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 18:30:28.477 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 18:35:15.536 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 20:25:39.674 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 20:25:41.133 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 20:45:50.897 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 20:45:51.786 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 22:55:26.442 INFO  Logging to 'D:\faks\Microservices\CarsMicroservice\bin\Debug\netcoreapp3.1\' with level Info
+2020-09-02 22:55:27.399 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-01'.
+2020-09-02 22:57:23.131 INFO  Logging to 'D:\faks\Microservices\CarsMicroservice\bin\Debug\netcoreapp3.1\' with level Info
+2020-09-02 22:57:23.598 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-01'.
+2020-09-02 21:01:51.135 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 21:01:52.183 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 23:03:39.740 INFO  Logging to 'D:\faks\Microservices\CarsMicroservice\bin\Debug\netcoreapp3.1\' with level Info
+2020-09-02 23:03:40.135 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-01'.

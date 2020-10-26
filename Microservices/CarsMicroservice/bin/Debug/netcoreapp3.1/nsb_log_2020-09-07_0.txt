@@ -1,0 +1,28 @@
+﻿2020-09-07 13:59:58.681 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 13:59:59.314 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-07 14:03:27.070 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:03:27.802 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-07 14:06:15.634 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:06:16.185 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-07 14:09:56.834 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:09:58.094 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-07 14:15:41.560 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:15:42.404 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-07 14:22:55.856 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:22:56.398 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-07 14:23:29.806 INFO  Received SeatReserved, CombinedReservationId = a9f2b3ac-7139-42fe-9a31-1a1daa120171
+2020-09-07 14:25:58.937 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:25:59.752 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-07 14:26:19.547 INFO  Received FlightCancelled
+2020-09-07 14:32:22.027 INFO  Received SeatReserved, CombinedReservationId = ec156e22-0e3e-4c1d-a883-47c35c15aeb1
+2020-09-07 14:33:27.669 INFO  Received FlightCancelled
+2020-09-07 14:33:55.838 INFO  Received SeatReserved, CombinedReservationId = 18032bfe-1ce8-4bc0-9c09-1db3fa7569e2
+2020-09-07 14:34:05.602 INFO  Received FlightCancelled
+2020-09-07 14:38:57.633 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 14:38:58.350 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-07 15:44:20.388 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-07 15:44:21.159 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-07 15:45:38.539 INFO  Received SeatReserved, CombinedReservationId = 459f32c0-5f20-451f-8c8a-2d78531eb8fd
+2020-09-07 15:45:59.563 INFO  Received FlightCancelled
+2020-09-07 15:47:44.433 INFO  Received SeatReserved, CombinedReservationId = 7457da8a-c062-48b7-afd0-24a4575b258f
+2020-09-07 15:48:02.453 INFO  Received FlightCancelled

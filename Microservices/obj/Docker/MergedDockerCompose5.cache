@@ -1,0 +1,54 @@
+services:
+  airlinesmicroservice:
+    build:
+      context: D:\faks\Microservices
+      dockerfile: AirlinesMicroservice/Dockerfile
+    depends_on:
+    - mysql-server
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: airlinesmicroservice
+    ports:
+    - published: 5003
+      target: 80
+    - target: 80
+  carsmicroservice:
+    build:
+      context: D:\faks\Microservices
+      dockerfile: CarsMicroservice/Dockerfile
+    depends_on:
+    - mysql-server
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: carsmicroservice
+    ports:
+    - published: 5004
+      target: 80
+    - target: 80
+  mysql-server:
+    environment:
+      MYSQL_PASSWORD: UserPassword!123
+      MYSQL_ROOT_PASSWORD: DatabasePassword!123
+      MYSQL_USER: user
+    image: mysql/mysql-server:5.6
+    ports:
+    - published: 3306
+      target: 3306
+    volumes:
+    - dbdata:/var/lib/mysql:rw
+  usersmicroservice:
+    build:
+      context: D:\faks\Microservices
+      dockerfile: UsersMicroservice/Dockerfile
+    depends_on:
+    - mysql-server
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: usersmicroservice
+    ports:
+    - published: 5005
+      target: 80
+    - target: 80
+version: '3.4'
+volumes:
+  dbdata: {}

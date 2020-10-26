@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+    </style>
+    <body style="background: transparent;">
+        <div class="w3-container w3-content" style="max-width:1400px; margin-top:80px">    
+            <div class="w3-row">
+                <div class="w3-col m3">
+                    <div class="w3-card w3-round w3-white">
+                            <div class="w3-container">
+                                <h4 class="w3-center">{{user.username}}</h4>
+                                <hr>
+                                <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>{{user.fullName}}</p>
+                                <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>{{user.birthday}}</p>
+                                <p>Points: {{user.points}}</p>
+                                <div class="w3-dropdown-hover w3-hide-small">
+                                    <button class="w3-button w3-padding-large" title="Requests"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{user.friendRequests.length}}</span></button>     
+                                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+                                        <button class="w3-bar-item w3-button" (click)="requests()">You have {{user.friendRequests.length}} friend request</button>
+                                    </div>
+                                </div>
+                                <div class="w3-dropdown-hover w3-hide-small">
+                                    <button class="w3-button w3-padding-large" title="Requests"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{dataSourceFlgReq.length}} </span></button>     
+                                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+                                        <button class="w3-bar-item w3-button" (click)="flightRequests()">You have {{dataSourceFlgReq.length}} flight request</button>
+                                    </div>
+                                </div>
+                                  <div class="w3-dropdown-hover w3-hide-small">
+                                    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{user.notifications.length}}</span></button>     
+                                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+                                        <div class="w3-bar-item w3-button" *ngFor="let u of user.notifications">{{u.text}}
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+                                </a>
+                            </div>
+                    </div>
+                    <br>
+                    
+                        <!-- Accordion -->
+                        <div class="w3-card w3-round">
+                            <div class="w3-white">
+                                <button (click)="myFlights()" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-plane fa-fw w3-margin-right"></i> My Flights</button>
+                                <div id="Demo1" class="w3-hide w3-container">
+                                    <p>Some text..</p>
+                                </div>
+                                <button (click)="myFlightsOld()" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-plane fa-fw w3-margin-right"></i> Old Flights</button>
+
+                                
+                                <button (click)="oldCars()" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-car fa-fw w3-margin-right"></i>Rented Cars</button>
+                                <button (click)="pendingReservations()" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-car fa-fw w3-margin-right"></i>Reservations Status</button>
+                                <button (click)="friends()" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-group fa-fw w3-margin-right"></i>My friends</button>
+                                <button (click)="people()" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-address-book-o fa-fw w3-margin-right"></i>Search people</button>
+
+                                <button [hidden]="user.socialUser" (click)="editProfile()" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Edit Profile</button>
+                                <div id="Demo2" class="w3-hide w3-container">
+                                    <p>Some other text..</p>
+                                </div>
+                                
+                            </div>      
+                        </div>
+
+                        <br>
+                        <br>
+                
+                    </div>
+                
+                    <!-- Middle Column -->
+                    <div class="w3-col m7">           
+                        <div class="w3-row-padding">
+                            <div class="w3-col m12">
+                                <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="!showFlgRequests || !showOldCars || !showFlights || !showFriends || !showPeople || !showCars || !showOldFlights || !showRequests" class="w3-container w3-padding">
+                                    </div>
+                                </div>
+                                <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="showFlights" class="w3-container w3-padding">
+                                        <table mat-table [dataSource]="dataSource"  multiTemplateDataRows class="mat-elevation-z8">
+                                            <ng-container matColumnDef="from">
+                                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> From </th>
+                                                <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.from.name}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="to">
+                                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> To </th>
+                                                  <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.to.name}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="departureDate">
+                                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Departure date </th>
+                                                  <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.departureDate}} </td>
+                                              </ng-container>
+                                          
+                                              <ng-container matColumnDef="duration">
+                                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Duration </th>
+                                                  <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.duration}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="prise">
+                                                  <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Price </th>
+                                                  <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{element.flight.prise}}e </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="discount">
+                                                  <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Discount </th>
+                                                  <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{element.discount}}% </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="seat">
+                                                  <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Seat </th>
+                                                  <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{element.seat.id}} <br>{{niz[element.seat.type]}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="trip">
+                                                <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Trip </th>
+                                                <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{niz2[element.flight.trip]}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="option">
+                                                <th mat-header-cell *matHeaderCellDef id="btn1"> Option </th>
+                                                <td mat-cell *matCellDef="let element" [hidden]="dozvoljeno(element.flight)" id="btn1"><button mat-raised-button color="accent" class="noOutlineBtn" (click)="cancel(element)">Cancel</button></td>
+                                            </ng-container>
+                                
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                            <tr class="j" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="showOldFlights" class="w3-container w3-padding">
+                                        <table mat-table [dataSource]="dataSourceOldFlights"  multiTemplateDataRows class="mat-elevation-z8">
+                                            <ng-container matColumnDef="aservice">
+                                                <th mat-header-cell *matHeaderCellDef> Airline service </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.flight.idCompany}} <br>
+                                                    <div class="rating" *ngIf="!element.gaveRateCompany">
+                                                        <span (click)="rate2(5, element.flight.idCompany, element)">☆</span><span (click)="rate2(4, element.flight.idCompany, element)">☆</span><span (click)="rate2(3, element.flight.idCompany, element)">☆</span><span (click)="rate2(2, element.flight.idCompany, element)">☆</span><span (click)="rate2(1, element.flight.idCompany, element)">☆</span>
+                                                        </div> </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="from">
+                                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> From </th>
+                                                <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.from.name}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="to">
+                                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> To </th>
+                                                  <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.to.name}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="departureDate">
+                                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Departure date </th>
+                                                  <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.departureDate}} </td>
+                                              </ng-container>
+                                          
+                                              <ng-container matColumnDef="duration">
+                                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Duration </th>
+                                                  <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.duration}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="prise">
+                                                  <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Price </th>
+                                                  <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{element.flight.prise}}e </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="discount">
+                                                  <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Discount </th>
+                                                  <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{element.discount}}% </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="seat">
+                                                  <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Seat </th>
+                                                  <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{element.seat.id}} <br>{{niz[element.seat.type]}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="trip">
+                                                <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Trip </th>
+                                                <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{niz2[element.flight.trip]}} </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="rate" >
+                                                <th mat-header-cell *matHeaderCellDef id="btn1"> Rate </th>
+                                                <td mat-cell *matCellDef="let element" id="btn1">
+                                                    <div class="rating" *ngIf="!element.gaveRate">
+                                                        <span (click)="rate(5, element.flight)">☆</span><span (click)="rate(4, element.fligh)">☆</span><span (click)="rate(3, element.flight)">☆</span><span (click)="rate(2, element.flight)">☆</span><span (click)="rate(1, element.flight)">☆</span>
+                                                        </div>
+                                                </td>
+                                            </ng-container>
+                                
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumnsOF"></tr>
+                                            <tr class="j" mat-row *matRowDef="let row; columns: displayedColumnsOF;"></tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="showCars" class="w3-container w3-padding">
+                                        <table  style="width: 100%;" mat-table [dataSource]="carsSource" multiTemplateDataRows class="mat-elevation-z8">
+                                            <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay2">
+                                                <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                                                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="expandedDetail">
+                                                <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay2.length">
+                                                    <div class="example-element-detail"
+                                                        [@detailExpand]="element == expandedElement2 ? 'expanded' : 'collapsed'">
+                                                        <div style="padding-bottom: 5mm;">
+                                                            <img class="carExpandImg" src="./assets/{{element.carEn.image}}"/>
+                                                        </div>
+                                                        <div class="example-element-description">
+                                                            Pick up details:
+                                                            <br>
+                                                            {{element.pickUpLocation}}&nbsp;at&nbsp;{{element.pickUpTime}}
+                                                            <br>
+                                                            <br>
+                                                            Drop off details:
+                                                            <br>
+                                                            {{element.dropOffLocation}}&nbsp;at&nbsp;{{element.dropOffTime}}
+                                                        </div>
+                                                        <div style="display: flex; padding-bottom: 5mm;">
+                                                            <button style="align-self:flex-end" mat-raised-button color="accent" (click)="removeCar(element.id)">Give Up</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+                                    
+                                            <tr mat-header-row *matHeaderRowDef="columnsToDisplay2"></tr>
+                                            <tr mat-row *matRowDef="let element; columns: columnsToDisplay2;" class="example-element-row"
+                                                [class.example-expanded-row]="expandedElement2 === element"
+                                                (click)="expandedElement2 = expandedElement2 === element ? null : element">
+                                            </tr>
+                                            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                                        </table>
+                                    </div>
+                                </div> -->
+
+                                <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="showReservations" class="w3-container w3-padding">
+                                        <table mat-table [dataSource]="dataSourcePendingRes"  multiTemplateDataRows class="mat-elevation-z8">
+                                            <ng-container matColumnDef="dateMade">
+                                                <th mat-header-cell *matHeaderCellDef> Date of creation </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.dateMade}} <br>
+                                                </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="description">
+                                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Description </th>
+                                                <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.description}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="status">
+                                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Status </th>
+                                                  <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.status}} </td>
+                                              </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumnsPenRes"></tr>
+                                            <tr class="j" mat-row *matRowDef="let row; columns: displayedColumnsPenRes;"></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="showOldCars" class="w3-container w3-padding">
+                                        <table matSort (matSortChange)="sortData($event)" style="width: 100%;" mat-table [dataSource]="dataSourceOldCars" multiTemplateDataRows class="mat-elevation-z8">
+                                            <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay2">
+                                                <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                                                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                                            </ng-container>
+                                    
+                                            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                                            <ng-container matColumnDef="expandedDetail">
+                                                <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay2.length">
+                                                    <div class="example-element-detail"
+                                                        [@detailExpand]="element == expandedElement2 ? 'expanded' : 'collapsed'">
+                                                        <div style="padding-bottom: 5mm;">
+                                                            <img class="carExpandImg" src="./assets/{{element.car.image}}"/>
+                                                        </div>
+                                                        <div [hidden]="checkIfReservationFinished(element.dateTo)" class="example-element-description">
+                                                            Pick up details: {{element.pickUpLocation}}&nbsp;at&nbsp;{{element.pickUpTime}}<br>
+                                                            Return details: {{element.dropOffLocation}}&nbsp;at&nbsp;{{element.dropOffTime}}<br>
+                                                            Extras included: <br>
+                                                            <div *ngFor = "let amenity of element.extras">
+                                                                {{amenity.name}}&nbsp;-&nbsp;{{amenity.price}}
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div [hidden]="!checkIfCanGiveUp(element.dateFrom, element.dateTo)" style="display: flex; padding-bottom: 5mm;">
+                                                            <button style="align-self:flex-end" mat-raised-button color="accent" (click)="GiveUpCarRes(element.companyId, element.id)">Give Up</button>
+                                                        </div>
+                                                        <div [hidden]="!checkIfReservationFinished(element.dateTo)" class="example-element-description">
+                                                            <br> 
+                                                            <div [hidden]="element.ratedCompany != 0">
+                                                                Rate company - <strong>{{element.company}}</strong> : 
+                                                                <div class="rating">
+                                                                    <span (click)="rateCompany(5, element.companyId, element.id, element)">☆</span>
+                                                                    <span (click)="rateCompany(4, element.companyId, element.id, element)">☆</span>
+                                                                    <span (click)="rateCompany(3, element.companyId, element.id, element)">☆</span>
+                                                                    <span (click)="rateCompany(2, element.companyId, element.id, element)">☆</span>
+                                                                    <span (click)="rateCompany(1, element.companyId, element.id, element)">☆</span>
+                                                                </div>
+                                                            </div>
+                                                            <div [hidden]="element.ratedCompany == 0">
+                                                                Company -  <strong>{{element.company}}</strong> : rated {{element.ratedCompany}}/5
+                                                            </div>
+                                                            
+                                                            <br>
+                                                            <div [hidden]="element.ratedCar != 0">
+                                                                Rate car - <strong>{{element.car.brand}}&nbsp;{{element.car.model}}</strong> :
+                                                                <div class="rating">
+                                                                    <span (click)="rateCar(5, element.companyId, element.car.id, element.id, element)">☆</span>
+                                                                    <span (click)="rateCar(4, element.companyId, element.car.id, element.id, element)">☆</span>
+                                                                    <span (click)="rateCar(3, element.companyId, element.car.id, element.id, element)">☆</span>
+                                                                    <span (click)="rateCar(2, element.companyId, element.car.id, element.id, element)">☆</span>
+                                                                    <span (click)="rateCar(1, element.companyId, element.car.id, element.id, element)">☆</span>
+                                                                </div>
+                                                            </div>
+                                                            <div [hidden]="element.ratedCar == 0">
+                                                                Car -  <strong>{{element.car.brand}}&nbsp;{{element.car.model}}</strong> : rated {{element.ratedCar}}/5
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+                                    
+                                            <tr mat-header-row *matHeaderRowDef="columnsToDisplay2"></tr>
+                                            <tr mat-row *matRowDef="let element; columns: columnsToDisplay2;" class="example-element-row"
+                                                [class.example-expanded-row]="expandedElement2 === element"
+                                                (click)="expandedElement2 = expandedElement2 === element ? null : element">
+                                            </tr>
+                                            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            
+  
+                                <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="showFriends" class="w3-container w3-padding">
+                                        <form [formGroup]="registerForm" (ngSubmit)="search()" >
+                                            <mat-form-field>
+                                                <mat-label>Search:</mat-label>
+                                                <input matInput formControlName="Name">
+                                            </mat-form-field>
+                                            <button mat-raised-button color="accent" class="noOutlineBtn" id="btn">Find</button>
+                                        </form>
+
+                                        <table mat-table [dataSource]="dataSource2" multiTemplateDataRows class="mat-elevation-z8">
+                                            <ng-container matColumnDef="fullName">
+                                              <th mat-header-cell *matHeaderCellDef> First name </th>
+                                              <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="option">
+                                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Option </th>
+                                                <td mat-cell *matCellDef="let element" style="text-align:center;"><button mat-raised-button color="accent" class="noOutlineBtn" (click)="removeFriend(element.id)">Remove</button></td>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                                            <tr class="j" mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="showPeople" class="w3-container w3-padding">
+                                        <form [formGroup]="registerForm" (ngSubmit)="search2()" >
+                                            <mat-form-field>
+                                                <mat-label>Search:</mat-label>
+                                                <input matInput formControlName="Name">
+                                            </mat-form-field>
+                                            <button mat-raised-button color="accent" class="noOutlineBtn" id="btn">Find</button>
+                                        </form>
+
+                                        <table mat-table [dataSource]="dataSource3" multiTemplateDataRows class="mat-elevation-z8">
+                                            <ng-container matColumnDef="fullName">
+                                              <th mat-header-cell *matHeaderCellDef> Full name </th>
+                                              <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="option">
+                                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Option </th>
+                                                <td mat-cell *matCellDef="let element" style="text-align:center;"><button mat-raised-button color="accent" class="noOutlineBtn" (click)="sendRequest(element.id)">Send request</button></td>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+                                            <tr class="j" mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="showRequests" class="w3-container w3-padding">
+                                        <table mat-table [dataSource]="dataSource4"  multiTemplateDataRows class="mat-elevation-z8">
+                                            <ng-container matColumnDef="fullName">
+                                              <th mat-header-cell *matHeaderCellDef> Full name </th>
+                                              <td mat-cell *matCellDef="let element"> {{element.user.fullName}} </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="option">
+                                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Option </th>
+                                                <td mat-cell *matCellDef="let element" style="text-align:center;">
+                                                    <button mat-raised-button color="accent" class="noOutlineBtn" (click)="acceptRequest(element.user.id)">Accept</button>
+                                                <button mat-raised-button color="accent" class="noOutlineBtn" (click)="cancelRequest(element.user.id)">Cancel</button>
+                                            </td>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns4"></tr>
+                                            <tr class="j" mat-row *matRowDef="let row; columns: displayedColumns4;"></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="showFlgRequests" class="w3-container w3-padding">
+                                        <table mat-table [dataSource]="dataSourceFlgReq"  multiTemplateDataRows class="mat-elevation-z8">
+                                            <ng-container matColumnDef="from">
+                                                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> From </th>
+                                                <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.from.name}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="to">
+                                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> To </th>
+                                                  <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.to.name}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="departureDate">
+                                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Departure date </th>
+                                                  <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.departureDate}} </td>
+                                              </ng-container>
+                                          
+                                              <ng-container matColumnDef="duration">
+                                                  <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Duration </th>
+                                                  <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.flight.duration}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="prise">
+                                                  <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Price </th>
+                                                  <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{element.flight.prise}}e </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="discount">
+                                                  <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Discount </th>
+                                                  <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{element.discount}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="seat">
+                                                  <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Seat </th>
+                                                  <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{element.seat.id}} <br>{{niz[element.seat.type]}} </td>
+                                              </ng-container>
+                                              <ng-container matColumnDef="trip">
+                                                <th mat-header-cell *matHeaderCellDef  style="text-align:center;"> Trip </th>
+                                                <td mat-cell *matCellDef="let element"  style="text-align:center;"> {{niz2[element.flight.trip]}} </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="option">
+                                                <th mat-header-cell *matHeaderCellDef id="btn1"> Option </th>
+                                                <td mat-cell *matCellDef="let element" >
+                                                    <button mat-raised-button color="accent" class="noOutlineBtn" (click)="acceptreq(element)">Y</button>
+
+                                                    <button mat-raised-button color="accent" class="noOutlineBtn" (click)="cancelreq(element)">N</button>
+                                                </td>
+
+                                            </ng-container>
+                                
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                            <tr class="j" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="w3-card w3-round w3-white">
+                                    <div *ngIf="showProfile" class="w3-container w3-padding">
+                                        <mat-accordion>
+                                            <mat-expansion-panel>
+                                              <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                  Change Account Information
+                                                </mat-panel-title>
+                                              </mat-expansion-panel-header>
+                            
+                                              <form [formGroup] = "ChangeInformationGroup" >
+                                                <mat-form-field>
+                                                    <mat-label>Full Name</mat-label>
+                                                    <input formControlName = "firstname" matInput>
+                                                </mat-form-field>
+                                              
+
+                            
+                                                <mat-form-field >
+                                                    <mat-label>Birthday</mat-label>
+                                                    <input matInput formControlName = "birthday" [matDatepicker]="picker1">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker1">
+                                                    </mat-datepicker-toggle>
+                                                    <mat-datepicker #picker1></mat-datepicker>
+                                                </mat-form-field>
+                                
+                                                
+                                                <br>
+                                
+                                                <mat-form-field>
+                                                    <mat-label>Address</mat-label>
+                                                    <input formControlName = "address" matInput>
+                                                </mat-form-field>
+                                
+                                                <mat-form-field>
+                                                    <mat-label>E-mail</mat-label>
+                                                    <input formControlName = "email" matInput>
+                                                </mat-form-field>
+                                
+                                                <mat-form-field>
+                                                    <mat-label>Passport</mat-label>
+                                                    <input formControlName = "passport" matInput>
+                                                </mat-form-field>
+                                
+                                                <p>Please enter your password to confirm</p>
+                                                  
+                                                <mat-form-field>
+                                                    <mat-label>Password</mat-label>
+                                                    <input formControlName="passCurrent" matInput>
+                                                  </mat-form-field>
+                                                <br>
+                                                <table>
+                                                    <tr>
+                                                        <td><button mat-raised-button (click)="changeInformation()">Save</button></td>
+                                                        <td style="padding-top: 4mm; padding-left: 4mm;"><p id="changeInfoError" style="color: red;"></p></td>
+                                                    </tr>
+                                                </table>
+                                              </form>
+                                              
+                                              
+                                            </mat-expansion-panel>
+                                            <mat-expansion-panel (opened)="panelOpenState = true"
+                                                                 (closed)="panelOpenState = false">
+                                              <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                  Change username
+                                                </mat-panel-title>
+                                              </mat-expansion-panel-header>
+                                              <form [formGroup]="ChangeUsernameGroup"> 
+                                                <mat-form-field>
+                                                    <mat-label>Username</mat-label>
+                                                    <input formControlName="username" matInput>
+                                                    <mat-hint *ngIf = "usernameExists">Username already exists</mat-hint>
+                                                  </mat-form-field>
+                                                  <button mat-raised-button (click)="checkUsername()" style="margin-left: 3mm;">Check</button>
+                                
+                                                  <p>Please enter your password to confirm</p>
+                                                  <mat-form-field>
+                                                    <mat-label>Password</mat-label>
+                                                    <input formControlName="currentPass" matInput type="password">
+                                                  </mat-form-field>
+                                                  <br>
+                                                  
+                                                  <table>
+                                                    <tr>
+                                                        <td><button mat-raised-button (click)="changeUsername()">Save</button></td>
+                                                        <td style="padding-top: 4mm; padding-left: 4mm;"><p id="changeUsernameError" style="color: red;"></p></td>
+                                                    </tr>
+                                                 </table>
+                                              </form>
+                                              
+                            
+                                            </mat-expansion-panel>
+                                            <mat-expansion-panel (opened)="panelOpenState = true"
+                                                                 (closed)="panelOpenState = false">
+                                              <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                  Change password
+                                                </mat-panel-title>
+                                              </mat-expansion-panel-header>
+                                              
+                                              <form [formGroup]="ChangePasswordGroup" >
+                                                <mat-form-field>
+                                                    <mat-label>New password</mat-label>
+                                                    <input matInput formControlName="newPassword" type="password">
+                                                    <mat-error *ngIf = "ChangePasswordGroup.controls['newPassword'].hasError('required')">
+                                                        New password is <strong>required</strong>
+                                                    </mat-error>
+                                                  </mat-form-field>
+                                                  <br>
+                                                  <mat-form-field>
+                                                    <mat-label>Repeat new password </mat-label>
+                                                    <input matInput formControlName="repeatNewPassword" type="password">
+                                                    <mat-error *ngIf = "ChangePasswordGroup.controls['repeatNewPassword'].hasError('required')">
+                                                        New password is <strong>required</strong>
+                                                    </mat-error>
+                                                  </mat-form-field>
+                                                  <br>
+                                                  <mat-form-field>
+                                                    <mat-label>Current password</mat-label>
+                                                    <input matInput formControlName="oldPassword" type="password">
+                                                    <mat-error *ngIf = "ChangePasswordGroup.controls['oldPassword'].hasError('required')">
+                                                        Current password is <strong>required</strong>
+                                                    </mat-error>
+                                                  </mat-form-field>
+                                              </form>
+                                              
+                                              <br>
+                                              <table>
+                                                <tr>
+                                                    <td><button mat-raised-button (click)="ChangePassword()">Save</button></td>
+                                                    <td style="padding-top: 4mm; padding-left: 4mm;"><p id="changePassError" style="color: red;"></p></td>
+                                                </tr>
+                                             </table>
+                                              
+                            
+                                            </mat-expansion-panel>
+                                          </mat-accordion>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div></div>
+                    <!-- End Middle Column -->
+                    </div>
+
+                    <div class="w3-col m2">
+                            <div class="w3-card w3-round w3-white w3-center">
+                                <div class="w3-container">
+                                    <p>Upcoming Events:</p>
+                                    <p><strong>Flight</strong></p>
+                                    <p>Friday 15:00</p>
+                                    <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+                                </div>
+                            </div>
+                            <br>
+                
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p>Travel invitation</p>
+                                <p>From:</p>
+                                <span>Jane Doe</span>
+                                <p>&nbsp;</p>
+                                <div class="w3-row w3-opacity">
+                                    <div><button class="w3-button w3-block w3-theme-l4">Details</button></div>
+                                    <div class="w3-half">
+                                        <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+                                    </div>
+                                    <div class="w3-half">
+                                        <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>    
+                        <br>      
+                </div>          
+            </div>
+        </div>
+    </body>
+</html> 
+
+

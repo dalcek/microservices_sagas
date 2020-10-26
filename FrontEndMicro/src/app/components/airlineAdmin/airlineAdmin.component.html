@@ -1,0 +1,896 @@
+<body style="background-color:transparent;">
+    <div [hidden]="loaded" style="height: 25cm; display: flex; justify-content: center; padding: 5cm;">
+        <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div [hidden]="!loaded">
+        <div [hidden]="user.changedPassword" style="width: 100%; height: 30cm; padding: 3cm">
+            <div style="display: flex; justify-content: center;">
+                <div>
+                    You must change password before proceeding
+                    <br>
+                    <form [formGroup]="ChangePasswordGroup">
+                        <mat-form-field>
+                            <mat-label>New password</mat-label>
+                            <input matInput formControlName="newPassword" type="password">
+                            <mat-error *ngIf="ChangePasswordGroup.controls['newPassword'].hasError('required')">
+                                New password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>Repeat new password </mat-label>
+                            <input matInput formControlName="repeatNewPassword" type="password">
+                            <mat-error *ngIf="ChangePasswordGroup.controls['repeatNewPassword'].hasError('required')">
+                                New password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>Current password</mat-label>
+                            <input matInput formControlName="oldPassword" type="password">
+                            <mat-error *ngIf="ChangePasswordGroup.controls['oldPassword'].hasError('required')">
+                                Current password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </form>
+
+                    <br>
+                    <table>
+                        <tr>
+                            <td><button mat-raised-button (click)="ChangePassword()">Save</button></td>
+                            <td style="padding-top: 4mm; padding-left: 4mm;">
+                                <p id="changePassError" style="color: red;"></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div [hidden]="!user.changedPassword" style="width: 100%;">
+            <div style="background-color:whitesmoke; height:20cm; width: 7cm; float: left; padding: 5mm;">
+                <div style="background-color: gainsboro; height: 2cm;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td valign="center" align="center"><img style="width: 17mm; height: 17mm;"
+                                    src="./assets/avatar.png" /></td>
+                            <td valign="center" align="center">{{user.username}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <hr>
+                <table style="width: 100%;">
+                    <tr id="dashboardRow" class="navRow" (click)="ShowDashboard()">
+                        <td valign="center">
+                            <h3>&nbsp;Dashboard</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                    <tr id="statisticsRow" class="navRow" (click)="ShowStatistics()">
+                        <td valign="center">
+                            <h3>&nbsp;Statistics</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                    <tr id="companyInfoRow" class="navRow" (click)="ShowCompanyInfo()">
+                        <td valign="center">
+                            <h3>&nbsp;Edit Company Information&nbsp;&nbsp;&nbsp;</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                    <tr id="locationsRow" class="navRow" (click)="ShowLocations()">
+                        <td valign="center">
+                            <h3>&nbsp;Manage Locations&nbsp;&nbsp;&nbsp;</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                    <tr id="flightsRow" class="navRow" (click)="ShowFlights()">
+                        <td valign="center">
+                            <h3>&nbsp;Manage Flights&nbsp;&nbsp;&nbsp;</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                    <tr id="pricesRow" class="navRow" (click)="ShowPrices()">
+                        <td valign="center">
+                            <h3>&nbsp;Manage Price List&nbsp;&nbsp;&nbsp;</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                    <tr id="profileInfoRow" class="navRow" (click)="ShowProfileInfo()">
+                        <td valign="center">
+                            <h3>&nbsp;Profile Info</h3>
+                        </td>
+                        <td valign="center">
+                            <h3>>&nbsp;&nbsp;</h3>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div [hidden]="dashboardHidden"
+                style="margin-left: 7cm; height: 20cm; padding: 1cm; background-color: gainsboro;">
+                <div class="card card-smallcard"
+                    style="float: left; padding: 3mm; width: 55mm; margin: 2mm; margin-left: 17mm; height: 5cm;">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h2>New Reservations</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>This week</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 50%; ">
+                                <span class="material-icons">local_mall</span>&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="left" style="width: 50%; padding-top: 3mm;">
+                                <h1>12</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card card-smallcard"
+                    style="float: left; padding: 3mm; width: 6cm; margin: 2mm; margin-left: 1cm; height: 5cm;">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h2>Total Profit</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>This week</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 50%;">
+                                <span class="material-icons">
+                                    account_balance_wallet
+                                </span>&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="left" style="width: 50%; padding-top: 3mm;">
+                                <h1>$256</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card card-smallcard"
+                    style="float: left; padding: 3mm; width: 6cm; margin: 2mm; margin-left: 1cm; height: 5cm;">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h2>Visitors</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>This week</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 50%;">
+                                <span class="material-icons">
+                                    people
+                                </span>&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="left" style="width: 50%; padding-top: 3mm;">
+                                <h1>15</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card card-smallcard"
+                    style="float: left; padding: 3mm; width: 6cm; margin: 2mm; margin-left: 1cm; height: 5cm;">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h2>Reviews</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>This week</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 50%;">
+                                <span class="material-icons">
+                                    rate_review
+                                </span>&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="left" style="width: 50%; padding-top: 3mm;">
+                                <h1>3</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card card-smallcard"
+                    style="padding:1cm; float: left; width: 18cm; margin: 3mm; height: 10cm;">
+                    Sales overview
+                </div>
+                <div class="card card-smallcard"
+                    style="padding: 1cm; float: right; width: 115mm; margin: 3mm; height: 10cm;">
+                    Visitors
+                </div>
+            </div>
+            <div [hidden]="statisticsHidden"
+                style="margin-left: 7cm; height: 100cm; padding: 1cm; background-color: gainsboro;">
+                <div class="divChart">
+                    <canvas id="myChart" width="400" height="400" [hidden]="!daily"></canvas>
+                    <canvas id="myChart2" width="400" height="400" [hidden]="!weekly"></canvas>
+                    <canvas id="myChart3" width="400" height="400" [hidden]="!permonth"></canvas>
+                </div>
+
+                <div>
+                    <select id="chartType" (click)="checkSelect()">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="permonth">Per month</option>
+                    </select>
+                    <br />
+                    <div [hidden]="!daily">
+                        <label>Choose day: </label>
+                        <input type='date' id="dayTxt" />
+                    </div>
+                    <div [hidden]="!weekly">
+                        <label>Choose week: </label>
+                        <input type='week' id="weekTxt" />
+                    </div>
+                    <div [hidden]="!permonth">
+                        <label>Choose month: </label>
+                        <input type='month' id="monthTxt" />
+                    </div>
+
+                    <div [hidden]="!daily">
+                        <button type="submit" (click)="submitInput()">Submit</button>
+                    </div>
+                    <div [hidden]="!weekly">
+                        <button type="submit" (click)="submitInput2()">Submit</button>
+                    </div>
+                    <div [hidden]="!permonth">
+                        <button type="submit" (click)="submitInput3()">Submit</button>
+                    </div>
+                </div>
+
+                <div class="divChart">
+                    <canvas id="myChart4" width="400" height="400" [hidden]="!daily2"></canvas>
+                    <canvas id="myChart5" width="400" height="400" [hidden]="!weekly2"></canvas>
+                    <canvas id="myChart6" width="400" height="400" [hidden]="!permonth2"></canvas>
+                </div>
+
+                <div>
+                    <select id="chartType2" (click)="checkSelect2()">
+                        <option value="daily2">Daily</option>
+                        <option value="weekly2">Weekly</option>
+                        <option value="permonth2">Per month</option>
+                    </select>
+                    <br />
+                    <div [hidden]="!daily2">
+                        <label>Choose day: </label>
+                        <input type='date' id="dayTxt2" />
+                    </div>
+                    <div [hidden]="!weekly2">
+                        <label>Choose week: </label>
+                        <input type='week' id="weekTxt2" />
+                    </div>
+                    <div [hidden]="!permonth2">
+                        <label>Choose month: </label>
+                        <input type='month' id="monthTxt2" />
+                    </div>
+
+                    <div [hidden]="!daily2">
+                        <button type="submit" (click)="submitInput4()">Submit</button>
+                    </div>
+                    <div [hidden]="!weekly2">
+                        <button type="submit" (click)="submitInput5()">Submit</button>
+                    </div>
+                    <div [hidden]="!permonth2">
+                        <button type="submit" (click)="submitInput6()">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div [hidden]="companyInfoHidden"
+                style="margin-left: 7cm; height: 20cm; padding: 1cm; background-color: gainsboro;">
+                <form [formGroup]="ChangeCompanyInfoGroup" (ngSubmit)="saveCompanyChanges()">
+                    <mat-form-field style="width: 10cm;">
+                        <mat-label>Full company name</mat-label>
+                        <input formControlName="companyName" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field style="width: 10cm;">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                    </mat-form-field>
+                    <p>Change logo image</p>
+                    <button mat-raised-button style="width: 10cm;">
+                        <input formControlName="logoImage" type="file" />
+                    </button>
+                    <br>
+                    <br>
+                    <tr>
+                        <td><button mat-raised-button color="accent" type="submit" (click)="saveCompanyChanges()">Save
+                                changes</button></td>
+                        <td style="padding-left: 4mm; padding-top: 3mm;">
+                            <p id="companyError"></p>
+                        </td>
+                    </tr>
+                </form>
+            </div>
+            <div [hidden]="locationsHidden"
+                style="margin-left: 7cm; height: fit-content; padding: 1cm; background-color: gainsboro;">
+                Destinations:
+                <br>
+                <div *ngFor="let loc of company.destinations">
+                    <br>
+                    <table>
+                        <tr>
+                            <td><img style="width: 7cm; height: 6cm;" src="./assets/{{loc.img}}" /></td>
+                            <td style="width: 4cm; padding-left: 5mm;">{{loc.name}}</td>
+                            <td style="padding-left: 3mm; width: 15cm;">{{loc.description}}</td>
+                            <td><button mat-raised-button (click)="editLocation(loc.id)"
+                                    style="padding-left: 3mm;">Edit</button></td>
+                            <td><button mat-raised-button (click)="removeLocation(loc)"
+                                    style="padding-left: 3mm;">Remove</button></td>
+                            <td><button mat-raised-button (click)="addToPopular(loc)" style="padding-left: 3mm;">Add to
+                                    popular</button></td>
+                        </tr>
+                    </table>
+                    <table id="{{loc.id}}" style="display: none;">
+                        <tr>
+                            <td>
+                                <button mat-raised-button style="width: 7cm;">
+                                    <input type="file" name="{{loc.id}}" />
+                                </button>
+                            </td>
+                            <td>
+                                <mat-form-field style="width: 40mm; padding-left: 5mm;">
+                                    <mat-label>Name</mat-label>
+                                    <input name="{{loc.id}}" value={{loc.name}} matInput>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field style="width: 140mm; padding-left: 5mm;">
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput name="{{loc.id}}" type="text"
+                                        value={{loc.description}}></textarea>
+                                </mat-form-field>
+                            </td>
+                            <td style="padding-left: 9mm;">
+                                <button mat-raised-button (click)="closeEditLocation(loc.id)">Cancel</button>
+                            </td>
+                            <td>
+                                <button mat-raised-button (click)="saveEditLocation(loc)">Save</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                </div>
+
+                <table id="newLocField" style="display: none;">
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>New location name</mat-label>
+                                <input id="newLocationName" matInput>
+
+                            </mat-form-field><br>
+                            <mat-form-field>
+                                <mat-label>Description</mat-label>
+                                <textarea matInput id="newLocationDesc"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <button mat-raised-button style="width: 7cm;">
+                                <input type="file" id="newLocationImg" />
+                            </button>
+                        </td>
+                        <td>
+                            <button mat-raised-button (click)="addLocation()">Add</button>
+                        </td>
+                    </tr>
+                </table>
+                <button mat-raised-button (click)="openAddField()">Add new</button>
+
+            </div>
+            <div [hidden]="flightsHidden" id="flightsDiv"
+                style="margin-left: 7cm; height: fit-content; padding: 1cm; background-color: gainsboro;">
+                <div *ngFor="let flight of company.flights">
+                    <table>
+                        <tr>
+                            <td><img style="width: 6cm; height: 5cm;" src="./assets/logof.jpg" /></td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td style="padding-bottom: 5mm; padding-left: 5mm;">From {{flight.from.name}} to
+                                            {{flight.to.name}}</td>
+                                        <td style="padding-bottom: 5mm; padding-left: 5mm;">Price: {{flight.price}}e
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-bottom: 5mm; padding-left: 5mm;">Departure date:
+                                            {{flight.departureDate.toLocaleString()}}</td>
+                                        <td>Number od seats: {{flight.seats.length}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding-bottom: 5mm; padding-left: 5mm;">Duration:
+                                            {{flight.duration}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-bottom: 5mm; padding-left: 5mm;">Rating: {{flight.rate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-bottom: 5mm; padding-left: 5mm;">Trip:
+                                            {{tickets[flight.trip]}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stops:
+                                            <div *ngFor="let stop of flight.stops" class="td1"
+                                                style="padding-bottom: 5mm; padding-left: 5mm;">-{{stop.name}}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-bottom: 5mm; padding-left: 5mm;">
+                                            Luggage weight -
+                                            {{flight.luggage.weight}}
+                                            dimensions -
+                                            {{flight.luggage.dimensions}}
+                                            quantity -
+                                            {{flight.luggage.quantity}}
+                                        </td>
+                                        <td style="padding-bottom: 5mm; padding-left: 5mm;"><button mat-raised-button
+                                                (click)="editFlight(flight.id)">Edit</button>
+                                            <button mat-raised-button (click)="removeFlight(flight.id)"
+                                                style="padding-left: 3mm;">Remove</button></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-bottom: 5mm; padding-left: 5mm;">
+                                            Services: {{flight.extra}}
+                                        </td>
+
+
+                                    </tr>
+
+                                </table>
+                                <br>
+                                <br>
+                            </td>
+
+                            <td>
+                                <div [hidden]="sakriven" id="{{flight.id}}">
+                                    <table style="padding-left: 4mm;">
+                                        <tr>
+                                            <td>
+                                                <mat-form-field>
+                                                    <mat-label>Luggage weight</mat-label>
+                                                    <input type="number" matInput value="{{flight.luggage.weight}}"
+                                                        id="idlug">
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <mat-form-field>
+
+                                                    <mat-label>Departure</mat-label>
+                                                    <input matInput [matDatepicker]="picker2"
+                                                        value="{{flight.departureDate}}" id="iddate">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker2">
+                                                    </mat-datepicker-toggle>
+                                                    <mat-datepicker #picker2></mat-datepicker>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <mat-form-field>
+                                                    <mat-label>Duration</mat-label>
+                                                    <input matInput value="{{flight.duration}}" id="idduration">
+                                                </mat-form-field>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <mat-form-field>
+                                                    <mat-label>Departure time</mat-label>
+                                                    <input matInput id="iddate2"
+                                                        value="{{((flight.departureDate.split(' ')[1]).split(':')[0])}}:{{((flight.departureDate.split(' ')[1]).split(':')[1])}}"
+                                                        placeholder="00:00">
+                                                </mat-form-field>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <mat-form-field>
+                                                    <mat-label>Extra</mat-label>
+                                                    <input matInput value="{{flight.extra}}" id="idextra">
+                                                </mat-form-field>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <mat-form-field>
+                                                    <mat-label>Price</mat-label>
+                                                    <input matInput value="{{flight.price}}" id="idprice">
+                                                </mat-form-field>
+                                            </td>
+                                            <td><button mat-raised-button
+                                                    (click)="saveEditFlight(flight.id)">Save</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+
+
+                        </tr>
+                    </table>
+
+                    <mat-divider></mat-divider>
+                </div>
+                <br>
+                <br>
+                <button mat-raised-button (click)="OpenAddFlight()">Add new</button>
+                <div id="newFlightDiv" style="display: none;">
+                    <form [formGroup]="NewFlightGroup">
+                        <table style="height: fit-content; width: fit-content;">
+                            <tr>
+                                <td>
+                                    <mat-form-field>
+                                        <mat-label>From</mat-label>
+                                        <mat-select formControlName="from">
+                                            <mat-option *ngFor="let d of company.destinations" [value]="d.name">
+                                                {{d.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>To</mat-label>
+                                        <mat-select formControlName="to">
+                                            <mat-option *ngFor="let d of company.destinations" [value]="d.name">
+                                                {{d.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Departure</mat-label>
+                                        <input matInput [matDatepicker]="picker2" formControlName="departureDate">
+                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Departure time</mat-label>
+                                        <input matInput type="time" name="appt" formControlName="departureTime">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Duration</mat-label>
+                                        <input matInput type="time" name="appt" formControlName="duration">
+                                    </mat-form-field>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <mat-form-field>
+                                        <mat-label>Trip</mat-label>
+                                        <mat-select formControlName="trip" (selectionChange)="changed()">
+                                            <mat-option *ngFor="let ticket of tickets" [value]="ticket">
+                                                {{ticket}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Stops: </mat-label>
+                                        <input matInput formControlName="stops" placeholder="London, Belgrade">
+
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+
+                                    <mat-form-field>
+                                        <mat-label>Luggage weight:</mat-label>
+                                        <input matInput type="number" formControlName="lw">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Luggage dimensions:</mat-label>
+                                        <input matInput formControlName="ld">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Luggage quantity:</mat-label>
+                                        <input matInput formControlName="lq" type="number">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Extra serveces: </mat-label>
+                                        <input matInput formControlName="extra">
+                                    </mat-form-field>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <mat-form-field>
+                                        <mat-label>business class seats: </mat-label>
+                                        <input matInput formControlName="b" type="number">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>economy class seats: </mat-label>
+                                        <input matInput formControlName="e" type="number">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>first class seats: </mat-label>
+                                        <input matInput formControlName="f" type="number">
+                                    </mat-form-field>
+
+                                    <mat-form-field>
+                                        <mat-label>Price</mat-label>
+                                        <input matInput formControlName="price" type="number">
+                                    </mat-form-field>
+                                    <button mat-raised-button (click)="closeAddFlight()"
+                                        style="margin-left: 5cm;">Cancel</button>
+                                    <button mat-raised-button (click)="addFlight()"
+                                        style="margin-left: 7mm;">Save</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+
+                </div>
+                <div id="newFlightDiv2" style="display: none;">
+                    <form [formGroup]="NewFlightGroup2">
+                        <table style="height: fit-content; width: fit-content;">
+                            <tr>
+                                <td>
+
+                                    <mat-form-field>
+                                        <mat-label>Departure</mat-label>
+                                        <input matInput [matDatepicker]="picker4" formControlName="departureDate">
+                                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker4></mat-datepicker>
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Departure time</mat-label>
+                                        <input matInput type="time" name="appt" formControlName="departureTime">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Duration</mat-label>
+                                        <input matInput type="time" name="appt" formControlName="duration">
+                                    </mat-form-field>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <mat-form-field>
+                                        <mat-label>Stops: </mat-label>
+                                        <input matInput formControlName="stops" placeholder="London, Belgrade">
+
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <mat-form-field>
+                                        <mat-label>Luggage weight:</mat-label>
+                                        <input matInput type="number" formControlName="lw">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Luggage dimensions:</mat-label>
+                                        <input matInput formControlName="ld">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Luggage quantity:</mat-label>
+                                        <input matInput formControlName="lq" type="number">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Extra serveces: </mat-label>
+                                        <input matInput formControlName="extra">
+                                    </mat-form-field>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <mat-form-field>
+                                        <mat-label>business class seats: </mat-label>
+                                        <input matInput formControlName="b" type="number">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>economy class seats: </mat-label>
+                                        <input matInput formControlName="e" type="number">
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>first class seats: </mat-label>
+                                        <input matInput formControlName="f" type="number">
+                                    </mat-form-field>
+
+                                    <mat-form-field>
+                                        <mat-label>Price</mat-label>
+                                        <input matInput formControlName="price" type="number">
+                                    </mat-form-field>
+                                    <button mat-raised-button (click)="addReturnFlight()"
+                                        style="margin-left: 5cm;">Save</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div [hidden]="pricesHidden"
+                style="margin-left: 7cm; height: 20cm; padding: 1cm; background-color: gainsboro;">
+                Prices
+            </div>
+            <div [hidden]="profileInfoHidden"
+                style="margin-left: 7cm; height: 20cm; padding: 1cm; background-color: gainsboro;">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Change Account Information
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <form [formGroup]="ChangeInformationGroup">
+                            <mat-form-field>
+                                <mat-label>Full Name</mat-label>
+                                <input formControlName="fullName" matInput>
+                            </mat-form-field>
+
+
+
+
+
+                            <br>
+
+                            <mat-form-field>
+                                <mat-label>Address</mat-label>
+                                <input formControlName="address" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>E-mail</mat-label>
+                                <input formControlName="email" matInput>
+                            </mat-form-field>
+
+                            <p>Please enter your password to confirm</p>
+
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input formControlName="passCurrent" matInput>
+                            </mat-form-field>
+                            <br>
+                            <table>
+                                <tr>
+                                    <td><button mat-raised-button (click)="changeInformation()">Save</button></td>
+                                    <td style="padding-top: 4mm; padding-left: 4mm;">
+                                        <p id="changeInfoError" style="color: red;"></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Change username
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <form [formGroup]="ChangeUsernameGroup">
+                            <mat-form-field>
+                                <mat-label>Username</mat-label>
+                                <input formControlName="username" matInput>
+                                <mat-hint *ngIf="usernameExists">Username already exists</mat-hint>
+                            </mat-form-field>
+                            <button mat-raised-button (click)="checkUsername()" style="margin-left: 3mm;">Check</button>
+
+                            <p>Please enter your password to confirm</p>
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input formControlName="currentPass" matInput type="password">
+                            </mat-form-field>
+                            <br>
+
+                            <table>
+                                <tr>
+                                    <td><button mat-raised-button (click)="changeUsername()">Save</button></td>
+                                    <td style="padding-top: 4mm; padding-left: 4mm;">
+                                        <p id="changeUsernameError" style="color: red;"></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Change password
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <form [formGroup]="ChangePasswordGroup">
+                            <mat-form-field>
+                                <mat-label>New password</mat-label>
+                                <input matInput formControlName="newPassword" type="password">
+                                <mat-error *ngIf="ChangePasswordGroup.controls['newPassword'].hasError('required')">
+                                    New password is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Repeat new password </mat-label>
+                                <input matInput formControlName="repeatNewPassword" type="password">
+                                <mat-error
+                                    *ngIf="ChangePasswordGroup.controls['repeatNewPassword'].hasError('required')">
+                                    New password is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Current password</mat-label>
+                                <input matInput formControlName="oldPassword" type="password">
+                                <mat-error *ngIf="ChangePasswordGroup.controls['oldPassword'].hasError('required')">
+                                    Current password is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </form>
+
+                        <br>
+                        <table>
+                            <tr>
+                                <td><button mat-raised-button (click)="ChangePassword()">Save</button></td>
+                                <td style="padding-top: 4mm; padding-left: 4mm;">
+                                    <p id="changePassError" style="color: red;"></p>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </div>
+</body>

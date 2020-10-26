@@ -1,0 +1,177 @@
+<br>
+  <button mat-fab color="accent" routerLink="/airlines/{{id}}/airline" style="margin-left: 7mm;">Back</button>
+    <div class="naslov"><img style="height: 4mm; width: 5mm;" src="./assets/nav1.png" /> Description: {{company.description}}
+        <img style="height: 4mm; width: 5mm;" src="./assets/nav2.png" />
+    </div>
+    
+<div class="scrol">
+<table>
+
+    <br>
+    <br>
+
+    <tr>
+<td *ngFor="let des of company.destinations" id="slika">
+    <div class="hh">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6 left-card-image-part" style="background: url(./assets/{{des.img}}); background-size: cover; min-height: 220px;">
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 left-card-text-part">
+                <h4><button (click)="odrediste(des.name)" target="blank_392">{{des.name}}</button></h4>
+                <p class="card-destinacija-teaser">{{des.description}}</p>
+            </div>
+        </div>
+    </div>
+</td>
+    </tr>
+
+<br>
+    
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        
+    </tr>
+</table>
+</div>
+<br>
+<br>
+<div class="search">
+    <form [formGroup]="registerForm">
+        <table class="ds">
+                <tr>
+                        <td>
+                                <mat-form-field>
+                                        <mat-label>Trip</mat-label>
+                                        <mat-select formControlName="Trip">
+                                        <mat-option *ngFor="let ticket of tickets" [value]="ticket.value">
+                                            {{ticket.viewValue}}
+                                        </mat-option>
+                                        </mat-select>
+                                </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-label>Price&nbsp;</mat-label>
+                            <mat-slider
+                                thumbLabel
+                                [displayWith]="formatLabel"
+                                tickInterval="100"
+                                min="1"
+                                max="1000"
+                                formControlName="Prise"> 
+                            </mat-slider>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                    <mat-label>Class</mat-label>
+                                    <mat-select formControlName="Clas">
+                                    <mat-option *ngFor="let clas of classes" [value]="clas.value">
+                                        {{clas.viewValue}}
+                                    </mat-option>
+                                    </mat-select>
+                            </mat-form-field>
+                    </td>
+                        
+                </tr>
+                <tr>
+                        <td> 
+                                <mat-form-field>
+                                        <mat-label>Departing from</mat-label>
+                                        <input matInput formControlName="From">
+                                </mat-form-field>
+                        </td>
+                        <td></td>
+                        <td>
+                            <mat-form-field style="width: 47mm;">
+                                <mat-label>Departure date</mat-label>
+                                <input matInput [matDatepicker]="picker2" formControlName="Date2">
+                                <mat-datepicker-toggle matSuffix [for]="picker2">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                <mat-form-field>
+                                        <mat-label>Arriving at</mat-label>
+                                        <input matInput formControlName="To">
+                                </mat-form-field>
+                        </td>
+                        <td></td>
+
+                        <td >
+                                <mat-form-field>
+                                        <mat-label>Departure date</mat-label>
+                                        <input matInput [matDatepicker]="picker" formControlName="Date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                        </td>
+                        
+                </tr>
+                <tr>
+                        <td colspan="3">
+                                <button mat-raised-button color="accent" class="noOutlineBtn" id="btn" (click)="search()">Search</button>
+                        </td>
+                </tr>
+        </table>
+    </form>         
+</div>
+<br>
+<br>
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+            <div class="example-element-detail"
+                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <div style="padding-bottom: 5mm;">
+                    <img class="carExpandImg" src="./assets/logof.jpg"/>
+                </div>
+                <div class="example-element-description">
+                    {{element.id}} - Pellentesque lacinia tortor at sagittis congue. Donec sagittis sem id dictum fringilla. Quisque tincidunt aliquet dolor, id tempor est pulvinar ac. Etiam congue eros vel orci dapibus pretium eu et risus. Proin lobortis urna massa, eget consectetur leo imperdiet non. Integer augue augue, pharetra eget rhoncus non, elementum ac ipsum. Vestibulum ullamcorper porttitor ante, vulputate volutpat velit tincidunt eget.
+                </div>
+                <div style="display: flex; padding-bottom: 5mm;">
+                    <button style="align-self:flex-end" mat-raised-button color="accent">Reserve</button>
+                </div>
+            </div>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="from">
+      <th mat-header-cell *matHeaderCellDef> From </th>
+      <td mat-cell *matCellDef="let element"> {{element.from.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="to">
+        <th mat-header-cell *matHeaderCellDef> To </th>
+        <td mat-cell *matCellDef="let element"> {{element.to.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="departureDate">
+        <th mat-header-cell *matHeaderCellDef> Departure date </th>
+        <td mat-cell *matCellDef="let element"> {{element.departureDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numOfPassengers">
+        <th mat-header-cell *matHeaderCellDef> Passengers </th>
+        <td mat-cell *matCellDef="let element"> {{element.numOfPassengers}} </td>
+    </ng-container>
+    <ng-container matColumnDef="duration">
+        <th mat-header-cell *matHeaderCellDef> Duration </th>
+        <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+    </ng-container>
+    <ng-container matColumnDef="prise">
+        <th mat-header-cell *matHeaderCellDef> Prise </th>
+        <td mat-cell *matCellDef="let element"> {{element.prise}}e </td>
+    </ng-container>
+    <ng-container matColumnDef="numOfStops">
+        <th mat-header-cell *matHeaderCellDef> Stops </th>
+        <td mat-cell *matCellDef="let element"> {{element.numOfStops}} </td>
+    </ng-container>
+    <ng-container matColumnDef="option">
+        <th mat-header-cell *matHeaderCellDef id="btn1"> Option </th>
+        <td mat-cell *matCellDef="let element" id="btn1"><button mat-raised-button color="accent" class="noOutlineBtn" (click)="switchLink(element.id)">Details</button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr class="j" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

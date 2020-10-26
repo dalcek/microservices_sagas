@@ -1,0 +1,208 @@
+
+h1{
+  font-size: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-style: bold;
+  text-align: center;
+  height: 50px;
+  width: 100%;
+}
+
+.noOutlineBtn:focus{
+  outline: none;
+}
+.imag {
+  background-image: url('/assets/logof.jpg');
+  /* Full height */
+  height: 50px;
+    width: 180px;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#stops
+{
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+}
+#seats
+{
+    width: 200px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+    margin-left: 200px;
+    text-align: center;
+    background-color: lightseagreen;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+ }
+ .s
+ {
+  background-image: linear-gradient(rgb(65, 65, 223), rgb(71, 190, 71));
+ }
+ .s2
+ {
+  background-image: linear-gradient(rgb(65, 65, 223), rgb(71, 190, 71));
+  width: 400px;
+  height: 1000px;
+ }
+ .carExpandImg {
+  width: 8cm;
+  height: 7cm;
+}
+tr.example-element-row:not(.example-expanded-row):hover {
+background: whitesmoke;
+cursor: pointer;
+}
+.example-element-row td {
+border-bottom-width: 0;
+}
+
+.example-element-detail {
+overflow: hidden;
+display: flex;
+}
+
+.example-element-diagram {
+min-width: 80px;
+border: 2px solid black;
+padding: 8px;
+font-weight: lighter;
+margin: 8px 0;
+height: 104px;
+}
+
+.example-element-symbol {
+font-weight: bold;
+font-size: 40px;
+line-height: normal;
+}
+
+.example-element-description {
+padding: 16px;
+}
+
+.example-element-description-attribution {
+opacity: 0.5;
+}
+tr.example-element-row:not(.example-expanded-row):active {
+background: #efefef;
+}
+
+#th4{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 15px;
+  color: #fff;
+  text-transform: uppercase;
+}
+th.thh
+{
+  color: blue;
+}
+.td1{
+  padding: 15px;
+  text-align: left;
+  max-width: 10%;
+  vertical-align:middle;
+  font-weight: 30;
+  font-size: 15px;
+  color: #fff;
+  border-bottom: solid 0x rgba(255,255,255,0.1);
+}
+
+
+.taken
+{
+    background-color: wheat;
+    color: rgb(226, 38, 38);
+}
+.taken2
+{
+    background-color: lightsalmon;
+    color: rgb(226, 38, 38);
+}  
+.taken3
+{
+    background-color: lightyellow;
+    color: rgb(226, 38, 38);
+}
+.tabela td
+{
+  text-align: center;
+}
+#pm
+{
+color:black;
+}
+.taken:hover
+{
+    background-color:lightgray;
+}
+.taken2:hover
+{
+    background-color:lightgray;
+}
+.taken3:hover
+{
+    background-color:lightgray;
+}
+.sseats
+{
+width: 200px;
+}
+.s3
+{
+ margin-left: 800px;
+ margin-top: 100px;
+
+}
+
+.boja
+{
+ width: 70px;
+}
+
+td.idtd
+{
+  max-width: 5%;
+}
+
+#div2
+{
+  margin-left: 100px;
+  float: left;
+  width: 200px;
+  height: 200px;
+  background-image: linear-gradient(rgb(65, 65, 223), rgb(71, 190, 71));
+}
+.div3
+{
+  width: 20%;
+  float: right;
+  margin-left: 600px;
+  margin-top: 200px;
+  position: absolute;
+}
+.table3
+{
+  text-align: center;
+}
+.tabela2
+{
+  text-align: center;
+}
+
+.ratingImg {
+  height: 45px;
+  width: 205px;
+}
+
+

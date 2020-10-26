@@ -1,0 +1,84 @@
+﻿2020-09-04 15:23:50.687 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 15:23:51.167 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 15:30:06.640 INFO  Received CarReserved, CombinedReservationId = a284a7a5-daf3-4221-bb0d-5688a70f7933
+2020-09-04 18:14:37.152 INFO  Logging to 'D:\faks\Microservices\UsersMicroservice\bin\Debug\netcoreapp3.1\' with level Info
+2020-09-04 18:14:37.453 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-01'.
+2020-09-04 18:17:34.532 INFO  Logging to 'D:\faks\Microservices\UsersMicroservice\bin\Debug\netcoreapp3.1\' with level Info
+2020-09-04 18:17:34.661 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-01'.
+2020-09-04 17:06:53.087 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:06:54.034 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 17:16:24.113 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:16:25.025 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 17:21:57.851 INFO  Received CarReserved, CombinedReservationId = e121f20c-b5fc-4418-ab09-b4019a49774d
+2020-09-04 17:24:17.475 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:24:18.666 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 17:24:36.136 INFO  Received CarReserved, CombinedReservationId = e121f20c-b5fc-4418-ab09-b4019a49774d
+2020-09-04 17:24:49.642 INFO  Immediate Retry is going to retry message '4b1086b3-e4a4-4846-9e45-ac2c011e2826' because of an exception:
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at UsersMicroservice.EventHandlers.CarReservedHandler.Handle(CarReserved message, IMessageHandlerContext context) in D:\faks\Microservices\UsersMicroservice\EventHandlers\CarReservedHandler.cs:line 36
+   at NServiceBus.InvokeHandlerTerminator.Terminate(IInvokeHandlerContext context) in /_/src/NServiceBus.Core/Pipeline/Incoming/InvokeHandlerTerminator.cs:line 22
+   at NServiceBus.LoadHandlersConnector.Invoke(IIncomingLogicalMessageContext context, Func`2 stage) in /_/src/NServiceBus.Core/Pipeline/Incoming/LoadHandlersConnector.cs:line 50
+   at NServiceBus.ScheduledTaskHandlingBehavior.Invoke(IIncomingLogicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/Scheduling/ScheduledTaskHandlingBehavior.cs:line 22
+   at NServiceBus.MutateIncomingMessageBehavior.InvokeIncomingMessageMutators(IIncomingLogicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/MessageMutators/MutateInstanceMessage/MutateIncomingMessageBehavior.cs:line 60
+   at NServiceBus.DeserializeMessageConnector.Invoke(IIncomingPhysicalMessageContext context, Func`2 stage) in /_/src/NServiceBus.Core/Pipeline/Incoming/DeserializeMessageConnector.cs:line 33
+   at NServiceBus.UnitOfWorkBehavior.InvokeUnitsOfWork(IIncomingPhysicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/UnitOfWork/UnitOfWorkBehavior.cs:line 40
+   at NServiceBus.UnitOfWorkBehavior.InvokeUnitsOfWork(IIncomingPhysicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/UnitOfWork/UnitOfWorkBehavior.cs:line 62
+   at NServiceBus.MutateIncomingTransportMessageBehavior.InvokeIncomingTransportMessagesMutators(IIncomingPhysicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/MessageMutators/MutateTransportMessage/MutateIncomingTransportMessageBehavior.cs:line 59
+   at NServiceBus.ProcessingStatisticsBehavior.Invoke(IIncomingPhysicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/Performance/Statistics/ProcessingStatisticsBehavior.cs:line 25
+   at NServiceBus.TransportReceiveToPhysicalMessageConnector.Invoke(ITransportReceiveContext context, Func`2 next) in /_/src/NServiceBus.Core/Pipeline/Incoming/TransportReceiveToPhysicalMessageConnector.cs:line 39
+   at NServiceBus.MainPipelineExecutor.Invoke(MessageContext messageContext) in /_/src/NServiceBus.Core/Pipeline/MainPipelineExecutor.cs:line 35
+   at NServiceBus.Transport.RabbitMQ.MessagePump.Process(BasicDeliverEventArgs message, Byte[] messageBody) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/MessagePump.cs:line 266
+Exception details:
+	Message type: Messages.Events.CarReserved
+	Handler type: UsersMicroservice.EventHandlers.CarReservedHandler
+	Handler start time: 2020-09-04 17:24:25:560459 Z
+	Handler failure time: 2020-09-04 17:24:49:618553 Z
+	Message ID: 4b1086b3-e4a4-4846-9e45-ac2c011e2826
+2020-09-04 17:24:51.955 INFO  Received CarReserved, CombinedReservationId = e121f20c-b5fc-4418-ab09-b4019a49774d
+2020-09-04 17:24:54.035 INFO  Immediate Retry is going to retry message '4b1086b3-e4a4-4846-9e45-ac2c011e2826' because of an exception:
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at UsersMicroservice.EventHandlers.CarReservedHandler.Handle(CarReserved message, IMessageHandlerContext context) in D:\faks\Microservices\UsersMicroservice\EventHandlers\CarReservedHandler.cs:line 36
+   at NServiceBus.InvokeHandlerTerminator.Terminate(IInvokeHandlerContext context) in /_/src/NServiceBus.Core/Pipeline/Incoming/InvokeHandlerTerminator.cs:line 22
+   at NServiceBus.LoadHandlersConnector.Invoke(IIncomingLogicalMessageContext context, Func`2 stage) in /_/src/NServiceBus.Core/Pipeline/Incoming/LoadHandlersConnector.cs:line 50
+   at NServiceBus.ScheduledTaskHandlingBehavior.Invoke(IIncomingLogicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/Scheduling/ScheduledTaskHandlingBehavior.cs:line 22
+   at NServiceBus.DeserializeMessageConnector.Invoke(IIncomingPhysicalMessageContext context, Func`2 stage) in /_/src/NServiceBus.Core/Pipeline/Incoming/DeserializeMessageConnector.cs:line 33
+   at NServiceBus.ProcessingStatisticsBehavior.Invoke(IIncomingPhysicalMessageContext context, Func`2 next) in /_/src/NServiceBus.Core/Performance/Statistics/ProcessingStatisticsBehavior.cs:line 25
+   at NServiceBus.TransportReceiveToPhysicalMessageConnector.Invoke(ITransportReceiveContext context, Func`2 next) in /_/src/NServiceBus.Core/Pipeline/Incoming/TransportReceiveToPhysicalMessageConnector.cs:line 39
+   at NServiceBus.MainPipelineExecutor.Invoke(MessageContext messageContext) in /_/src/NServiceBus.Core/Pipeline/MainPipelineExecutor.cs:line 35
+   at NServiceBus.Transport.RabbitMQ.MessagePump.Process(BasicDeliverEventArgs message, Byte[] messageBody) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/MessagePump.cs:line 266
+Exception details:
+	Message type: Messages.Events.CarReserved
+	Handler type: UsersMicroservice.EventHandlers.CarReservedHandler
+	Handler start time: 2020-09-04 17:24:49:812959 Z
+	Handler failure time: 2020-09-04 17:24:54:033024 Z
+	Message ID: 4b1086b3-e4a4-4846-9e45-ac2c011e2826
+2020-09-04 17:26:16.194 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:26:16.937 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 17:26:33.518 INFO  Received CarReserved, CombinedReservationId = e121f20c-b5fc-4418-ab09-b4019a49774d
+2020-09-04 17:30:08.296 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:30:09.648 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 17:30:26.744 INFO  Received CarReserved, CombinedReservationId = e121f20c-b5fc-4418-ab09-b4019a49774d
+2020-09-04 17:32:22.194 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 17:32:23.445 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 17:39:36.438 INFO  Received CarReserved, CombinedReservationId = b0ced756-aa06-4261-a71f-ad67bed55e2f
+2020-09-04 18:02:07.157 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:02:08.600 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 18:13:29.159 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:13:30.716 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 18:27:47.465 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:27:48.290 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 18:36:38.190 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:36:39.245 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 18:40:26.461 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:40:27.503 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 18:41:59.894 INFO  Received CarReserved, CombinedReservationId = c18fc650-3120-4e7c-a8aa-e655827bb73f
+2020-09-04 18:55:21.955 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 18:55:23.166 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.
+2020-09-04 18:56:42.114 INFO  Received CarReserved, CombinedReservationId = 28e41ba4-dc6e-4c50-9b6f-f4d9dadc26ad
+2020-09-04 18:56:59.007 INFO  Received FlightCancelled
+2020-09-04 18:56:59.436 INFO  Received FlightCancelled
+2020-09-04 18:58:53.667 INFO  Received FlightCancelled
+2020-09-04 18:58:55.301 INFO  Received FlightCancelled
+2020-09-04 18:58:56.810 INFO  Received FlightCancelled
+2020-09-04 19:02:33.382 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-04 19:02:34.168 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-03'.

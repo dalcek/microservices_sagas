@@ -1,0 +1,952 @@
+<body style="background-color:transparent;">
+    <div [hidden]="loaded" style="height: 25cm; display: flex; justify-content: center; padding: 5cm;">
+        <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div [hidden]="!loaded">
+        <div [hidden]="user.changedPassword" style="width: 100%; height: 30cm; padding: 3cm">
+            <div style="display: flex; justify-content: center;">
+                <div>
+                    You must change password before proceeding
+                    <br>
+                    <form [formGroup]="ChangePasswordGroup">
+                        <mat-form-field>
+                            <mat-label>New password</mat-label>
+                            <input matInput formControlName="newPassword" type="password">
+                            <mat-error *ngIf="ChangePasswordGroup.controls['newPassword'].hasError('required')">
+                                New password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>Repeat new password </mat-label>
+                            <input matInput formControlName="repeatNewPassword" type="password">
+                            <mat-error *ngIf="ChangePasswordGroup.controls['repeatNewPassword'].hasError('required')">
+                                New password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <mat-label>Current password</mat-label>
+                            <input matInput formControlName="oldPassword" type="password">
+                            <mat-error *ngIf="ChangePasswordGroup.controls['oldPassword'].hasError('required')">
+                                Current password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <br>
+                        <table>
+                            <tr>
+                                <td><button mat-raised-button (click)="ChangePassword()">Save</button></td>
+                                <td style="padding-top: 4mm; padding-left: 4mm;">
+                                    <p id="changePassError" style="color: red;"></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div>
+                    <p id="changePassError" style="display: none;"></p>
+                </div>
+            </div>
+
+        </div>
+        <div [hidden]="!user.changedPassword" style="width: 100%;">
+            <div style="background-color:whitesmoke; height:25cm; width: 7cm; float: left; padding: 5mm; margin-top: 0;">
+                <div style="background-color: gainsboro; height: 5cm;">
+                    <table style="width: 100%; ">
+                        <tr>
+                            <td valign="center" align="center"><img style="width: 17mm; height: 17mm;"
+                                    src="./assets/avatar.png" /></td>
+                            <td valign="center" align="left">{{user.username}}</td>
+                        </tr>
+                    </table>
+                    <div style="display: flex; justify-content: center;">
+                        <img style="width: 5cm; height: 15mm;" src="./assets/{{user.companyInfo.logo}}" />
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <img [hidden]="rRating != 5" class="ratingImg" src="./assets/5star.png" />
+                        <img [hidden]="rRating !== 4" class="ratingImg" src="./assets/4star.png" />
+                        <img [hidden]="rRating !== 3" class="ratingImg" src="./assets/3star.png" />
+                        <img [hidden]="rRating !== 2" class="ratingImg" src="./assets/2star.png" />
+                        <img [hidden]="rRating !== 1" class="ratingImg" src="./assets/1star.png" />
+                        <img [hidden]="rRating !== 0" class="ratingImg" src="./assets/nostar.png" />
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        ({{rating}})
+                    </div>
+                </div>
+                <hr>
+                <table cellspacing="0" style="width: 100%; border-collapse:separate; border-spacing:0 10px;">
+                    <tr id="dashboardRow" class="navRow" (click)="ShowDashboard()">
+                        <td class="tdFitRow">
+                            <p class="noMargin">&nbsp;Dashboard</p>
+                        </td>
+                        <td class="tdFitRow">
+                            <p class="noMargin">>&nbsp;&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr id="companyInfoRow" class="navRow" (click)="ShowCompanyInfo()">
+                        <td class="tdFitRow">
+                            <p class="noMargin">&nbsp;Company Information&nbsp;&nbsp;&nbsp;</p>
+                        </td>
+                        <td class="tdFitRow">
+                            <p class="noMargin">>&nbsp;&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr id="carsRow" class="navRow" (click)="ShowCars()">
+                        <td class="tdFitRow">
+                            <p class="noMargin">&nbsp;Manage Cars&nbsp;&nbsp;&nbsp;</p>
+                        </td>
+                        <td class="tdFitRow">
+                            <p class="noMargin">>&nbsp;&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr id="branchesRow" class="navRow" (click)="ShowBranches()">
+                        <td class="tdFitRow">
+                            <p class="noMargin">&nbsp;Manage Branches&nbsp;&nbsp;&nbsp;</p>
+                        </td>
+                        <td class="tdFitRow">
+                            <p class="noMargin">>&nbsp;&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr id="extrasRow" class="navRow" (click)="ShowExtras()">
+                        <td class="tdFitRow">
+                            <p class="noMargin">&nbsp;Extras</p>
+                        </td>
+                        <td class="tdFitRow">
+                            <p class="noMargin">>&nbsp;&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr id="profileInfoRow" class="navRow" (click)="ShowProfileInfo()">
+                        <td class="tdFitRow">
+                            <p class="noMargin">&nbsp;Profile Info</p>
+                        </td>
+                        <td class="tdFitRow">
+                            <p class="noMargin">>&nbsp;&nbsp;</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div [hidden]="dashboardHidden"
+                style="margin-left: 7cm; height: fit-content; min-height: 25cm; padding: 7mm; background-color: gainsboro;">
+                <div class="dropShadow" [hidden]="user.companyInfo.activated"
+                    style="margin-bottom: 2mm; padding:2mm; width: 100%; height: fit-content; background-color: rgba(179, 84, 84, 0.89);">
+                    <h5 style="color: white;">Company registration is not finished. To complete activation, please fill
+                        all
+                        neccesary fields at 'Edit Company Information' tab. </h5>
+                </div>
+                <div class="card card-smallcard"
+                    style="float: left; padding: 3mm; width: 71mm; margin: 4mm; height: 5cm;">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h2>New Reservations</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>This week</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 50%; ">
+                                <span class="material-icons">local_mall</span>&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="left" style="width: 50%; padding-top: 3mm;">
+                                <h1>12</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card card-smallcard"
+                    style="float: left; padding: 3mm; width: 71mm; margin: 4mm; height: 5cm;">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h2>Total Profit</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>This week</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 50%;">
+                                <span class="material-icons">
+                                    account_balance_wallet
+                                </span>&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="left" style="width: 50%; padding-top: 3mm;">
+                                <h1>$256</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card card-smallcard"
+                    style="float: left; padding: 3mm; width: 71mm; margin: 4mm; height: 5cm;">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h2>Visitors</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>This week</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 50%;">
+                                <span class="material-icons">
+                                    people
+                                </span>&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="left" style="width: 50%; padding-top: 3mm;">
+                                <h1>15</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card card-smallcard"
+                    style="float: left; padding: 3mm; width: 72mm; margin: 4mm; height: 5cm;">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h2>Reviews</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>This week</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 50%;">
+                                <span class="material-icons">
+                                    rate_review
+                                </span>&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="left" style="width: 50%; padding-top: 3mm;">
+                                <h1>3</h1>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card card-smallcard"
+                    style="padding:1cm; float: left; width: 18cm; margin: 4mm; height: 12cm;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 50%;">Reservations</td>
+                            <td align="right" style="width: 50%;">
+                                <mat-form-field style="float: right; width: 3cm;">
+                                    <mat-label>Report</mat-label>
+                                    <mat-select [(value)]="selected">
+                                        <mat-option value="daily" (click)="SwitchToDaily()">Daily</mat-option>
+                                        <mat-option value="weekly" (click)="SwitchToWeekly()">Weekly</mat-option>
+                                        <mat-option value="monthly" (click)="SwitchToMonthly()">Monthly</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="display: block">
+                        <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+                            [colors]="chartColors" [options]="chartOptions" [legend]="true">
+                        </canvas>
+                    </div>
+                </div>
+                <div class="card card-smallcard"
+                    style="padding: 1cm; float: right; width: 120mm; margin: 4mm; height: 12cm;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 50%;">Reviews</td>
+                            <td align="right" style="width: 50%;">
+
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <div style="display: block" alt="First slide">
+                        <canvas mdbChart height="250" [chartType]="chartType2" [datasets]="chartDatasets2"
+                            [labels]="chartLabels2" [colors]="chartColors2" [options]="chartOptions2" [legend]="true">
+                        </canvas>
+                    </div>
+
+                </div>
+                <div class="card card-smallcard"
+                    style="width: 98%; margin: 4mm; height: fit-content; padding: 1cm; margin-top: 7mm;">
+                    <form [formGroup]="GetProfitGroup">
+                        <table>
+                            <tr>
+                                <td style="width: 1cm; padding-top: 2mm;">
+                                    <span class="material-icons">
+                                        account_balance_wallet
+                                    </span>
+                                </td>
+                                <td style="width: 15%;">
+                                    <strong>Profit</strong>
+                                </td>
+                                <td>
+                                    <mat-form-field>
+                                        <mat-label>From</mat-label>
+                                        <input matInput formControlName="dateFrom" [matDatepicker]="profitPicker1">
+                                        <mat-datepicker-toggle matSuffix [for]="profitPicker1">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #profitPicker1></mat-datepicker>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field>
+                                        <mat-label>To</mat-label>
+                                        <input matInput formControlName="dateTo" [matDatepicker]="profitPicker2">
+                                        <mat-datepicker-toggle matSuffix [for]="profitPicker2">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #profitPicker2></mat-datepicker>
+                                    </mat-form-field>
+                                </td>
+                                <td style="width: 20%;">
+                                    <button mat-raised-button [disabled]="!GetProfitGroup.valid"
+                                        (click)="GetProfit()">Get profit</button>
+                                </td>
+                                <td>
+                                    <p id="profit">Iznos</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+
+                </div>
+            </div>
+            <div [hidden]="companyInfoHidden"
+                style="margin-left: 7cm; height: 20cm; padding: 1cm; background-color: gainsboro;">
+                <div style="display: flex; justify-content: center;">
+
+                    <div style="padding: 2cm;">
+                        <form [formGroup]="ChangeCompanyInfoGroup">
+                            <mat-form-field style="width: 10cm;">
+                                <mat-label>Full company name</mat-label>
+                                <input formControlName="companyName" matInput>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field style="width: 10cm;">
+                                <mat-label>Description</mat-label>
+                                <textarea matInput formControlName="description"></textarea>
+                            </mat-form-field>
+                            <p>Change logo image</p>
+                            <button mat-raised-button style="width: 10cm;">
+                                <input formControlName="logoImage" type="file" />
+                            </button>
+                            <br>
+                            <br>
+                            <table>
+                                <tr>
+                                    <td><button mat-raised-button color="accent" type="submit"
+                                            (click)="saveCompanyChanges()">Save changes</button></td>
+                                    <td style="padding-left: 4mm; padding-top: 3mm;">
+                                        <p id="companyError"></p>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+            <div [hidden]="carsHidden" id="carsDiv"
+                style="margin-left: 7cm; height: fit-content; min-height: 25cm; padding: 1cm; background-color: gainsboro;">
+                <div>
+                    <form [formGroup]="AvailableCarsGroup">
+                        <mat-form-field>
+                            <mat-label>Available from</mat-label>
+                            <input matInput formControlName="from" [matDatepicker]=aFromPicker>
+                            <mat-datepicker-toggle matSuffix [for]="aFromPicker">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #aFromPicker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Available until</mat-label>
+                            <input matInput formControlName="to" [matDatepicker]="aUntilPicker">
+                            <mat-datepicker-toggle matSuffix [for]="aUntilPicker">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #aUntilPicker></mat-datepicker>
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;
+                        <button mat-raised-button [disabled]="!AvailableCarsGroup.valid" (click)="FindAvailableCars()" >Find</button>&nbsp;&nbsp;
+                        <button mat-raised-button (click)="ResetAvailable()" >Reset</button>&nbsp;&nbsp;&nbsp;
+                        <p style="color:rgb(136, 37, 37); display: none;" id="availableError">Invalid input</p>
+                    </form>
+                    <mat-divider></mat-divider>
+                </div>
+                <div *ngFor="let car of user.companyInfo.cars">
+
+                    <table>
+                        <tr>
+                            <td style="padding-right: 5mm;"><img style="width: 7cm; height: 6cm;"
+                                    src="./assets/{{car.image}}" /></td>
+                            <td>
+                                <table style="padding-left: 7mm;">
+                                    <tr>
+                                        <td style="padding: 3mm;">{{car.brand}}&nbsp;-&nbsp;{{car.model}}</td>
+                                        <td style="padding: 3mm;">Year: {{car.year}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 3mm;">Type: {{car.type}}</td>
+                                        <td style="padding: 3mm;">Passengers: {{car.passengers}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 3mm;">Location: {{car.location}}</td>
+                                        <td style="padding: 3mm;">Price per day: {{car.price}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 3mm;">Rating: {{car.avrageRating}}</td>
+                                        <td style="padding: 3mm;">
+                                            <p>{{car.available}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 3mm;">
+                                            <button mat-raised-button
+                                            (click)="editCar(car)">Edit</button>&nbsp;&nbsp;
+                                        <button mat-raised-button (click)="setForDisc(car.id)">Manage
+                                            Discount</button>&nbsp;&nbsp;
+                                        <button mat-raised-button (click)="RemoveCar(car)">Remove</button></td>
+                                        <td style="padding: 3mm;">
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr>
+                            <td class="card card-smallcard" id="{{car.id}}" style="display: none; padding: 1cm;">
+                                <table style="padding-left: 4mm;">
+                                    <tr>
+                                        <td>
+                                            <mat-form-field style="width: 4cm;">
+                                                <mat-label>Brand</mat-label>
+                                                <input matInput value="{{car.brand}}" name="{{car.id}}" required>
+                                            </mat-form-field>
+                                            <mat-form-field style="width: 4cm;">
+                                                <mat-label>Model</mat-label>
+                                                <input matInput value="{{car.model}}" name="{{car.id}}" required>
+                                            </mat-form-field>
+                                            <mat-form-field style="width: 4cm;">
+                                                <mat-label>Year</mat-label>
+                                                <input type="number" maxlength="4" matInput value="{{car.year}}"
+                                                    name="{{car.id}}" required>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                                <mat-label>Car type</mat-label>
+                                                <mat-select [(value)]="selectedType">
+                                                    <mat-option *ngFor="let type of types" [value]="type.value">
+                                                        {{type.viewValue}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <mat-form-field style="width: 4cm;">
+                                                <mat-label>Passengers</mat-label>
+                                                <input matInput value="{{car.passengers}}" name="{{car.id}}" required>
+                                            </mat-form-field>
+                                            <mat-form-field style="width: 4cm;">
+                                                <mat-label>Price</mat-label>
+                                                <input matInput value="{{car.price}}" name="{{car.id}}" required>
+                                            </mat-form-field>
+                                            <mat-form-field style="width: 9cm;">
+                                                <mat-label>Location</mat-label>
+                                                <mat-select [(value)]="selectedLocation">
+                                                    <mat-option
+                                                        value="{{user.companyInfo.locations.mainLocation.fullAddress}}">
+                                                        {{user.companyInfo.locations.mainLocation.fullAddress}}
+                                                    </mat-option>
+                                                    <mat-option *ngFor="let loc of user.companyInfo.locations.locations"
+                                                        value="{{loc.fullAddress}}">{{loc.fullAddress}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <button mat-raised-button style="width: 8cm;">
+                                                <input name="newCar" type="file" />
+                                            </button>
+                                            <button mat-raised-button (click)="saveEditCar(car)"
+                                                style="margin-left: 5cm;">Save</button>
+                                            &nbsp;&nbsp;
+                                            <button mat-raised-button (click)="closeEditCar(car.id)">Cancel</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td id="dicsCar{{car.id}}" style="display: none;">
+                                Dates when car is discounted:
+                                <div *ngFor="let discounted of car.quickReservations">
+                                    {{discounted.from}}
+                                    &nbsp;-&nbsp;
+                                    {{discounted.to}}&nbsp;&nbsp;&nbsp;
+                                    <button mat-raised-button
+                                        (click)="RemoveDiscountRange(discounted.id)">Remove</button>
+                                </div>
+                                <br>
+                                <button mat-raised-button (click)="OpenAddNewDiscountRange(car.id)">Add
+                                    New</button>&nbsp;&nbsp;
+                                <button mat-raised-button (click)="HideDiscountedDates(car.id)">Close</button>
+                                <br>
+                                <br>
+                                <div id="addDiscountRange{{car.id}}" style="display: none;">
+                                    <mat-form-field>
+                                        <mat-label>From</mat-label>
+                                        <input matInput name="newRange{{car.id}}" [matDatepicker]="pickerFromDis">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerFromDis">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #pickerFromDis></mat-datepicker>
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>To</mat-label>
+                                        <input matInput name="newRange{{car.id}}" [matDatepicker]="pickerToDis">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerToDis">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #pickerToDis></mat-datepicker>
+                                    </mat-form-field>
+                                    <br>
+                                    <button mat-raised-button
+                                        (click)="SaveNewDiscountRange(car.id)">Save</button>&nbsp;&nbsp;
+                                    <button mat-raised-button (click)="CloseAddNewDiscountRange(car.id)">Cancel</button>
+                                    <p id="discountError" style="display: none;"></p>
+                                    <br>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <mat-divider></mat-divider>
+                </div>
+                <br>
+                <button mat-raised-button color="accent" (click)="OpenAddNewCar()">Add new car</button>
+                <br>
+                <br>
+                <div id="newCarDiv" class="card card-smallcard"
+                    style="display: none; height: fit-content; width: fit-content; padding: 1cm;">
+                    <br>
+                    <form [formGroup]="NewCarGroup">
+                        <table style="padding-left: 4mm;">
+                            <tr>
+                                <td>
+                                    <mat-form-field style="width: 4cm;">
+                                        <mat-label>Brand</mat-label>
+                                        <input matInput formControlName="brand">
+                                    </mat-form-field>
+                                    <mat-form-field style="width: 4cm;">
+                                        <mat-label>Model</mat-label>
+                                        <input matInput formControlName="model">
+                                    </mat-form-field>
+                                    <mat-form-field style="width: 4cm;">
+                                        <mat-label>Year</mat-label>
+                                        <input type="number" formControlName="year" maxlength="4" matInput>
+                                    </mat-form-field>
+                                    <mat-form-field>
+                                        <mat-label>Car type</mat-label>
+                                        <mat-select formControlName="type" [(value)]="selectedNewType">
+                                            <mat-option *ngFor="let type of types" [value]="type.value">
+                                                {{type.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <mat-form-field style="width: 4cm;">
+                                        <mat-label>Passengers</mat-label>
+                                        <input matInput formControlName="passengers" type="number">
+                                    </mat-form-field>
+                                    <mat-form-field style="width: 4cm;">
+                                        <mat-label>Price</mat-label>
+                                        <input matInput formControlName="price" type="number">
+                                    </mat-form-field>
+                                    <mat-form-field style="width: 88mm;">
+                                        <mat-label>Location</mat-label>
+                                        <mat-select formControlName="location" [(value)]="selectedNewLocation">
+                                            <mat-option value="{{user.companyInfo.locations.mainLocation.fullAddress}}">
+                                                {{user.companyInfo.locations.mainLocation.fullAddress}}</mat-option>
+                                            <mat-option *ngFor="let loc of user.companyInfo.locations.locations"
+                                                value="{{loc.fullAddress}}">{{loc.fullAddress}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button mat-raised-button style="width: 8cm;">
+                                        <input formControlName="image" name="newCar" type="file" />
+                                    </button>
+                                    <button style="margin-left: 5cm;" mat-raised-button color="accent" [disabled]="!NewCarGroup.valid"
+                                        (click)="AddNewCar()">Add</button>
+                                    &nbsp;&nbsp;
+                                    <button mat-raised-button color="accent" (click)="closeAddCar()">Cancel</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <br>
+
+                </div>
+            </div>
+            <div [hidden]="branchesHidden"
+                style="margin-left: 7cm; height: fit-content; min-height: 20cm; padding: 1cm; background-color: gainsboro;">
+                <div style="box-shadow: 1px 1px 10px #0000004a;">
+                    <agm-map style="width: 100%; height: 400px;" [latitude]="startLat" [longitude]="startLon"
+                        [zoom]="zoom">
+
+                        <agm-polyline [strokeColor]="polyline.color">
+                            <agm-polyline-point *ngFor="let point of polyline.path" [latitude]="point.latitude"
+                                [longitude]="point.longitude">
+                            </agm-polyline-point>
+                        </agm-polyline>
+
+                        <agm-marker [latitude]="user.companyInfo.locations.mainLocation.latitude"
+                            [longitude]="user.companyInfo.locations.mainLocation.longitude"
+                            [title]="user.companyInfo.name" [iconUrl]="busImgIcon" label="">
+                        </agm-marker>
+
+                        <agm-marker *ngFor="let addr of user.companyInfo.locations.locations" [latitude]="addr.latitude"
+                            [longitude]="addr.longitude" [title]="user.companyInfo.name" [iconUrl]="busImgIcon"
+                            label="">
+                        </agm-marker>
+
+                    </agm-map>
+                </div>
+                <br>
+                <br>
+                <div class="dropShadow" style="padding: 7mm; background-color: rgba(255, 255, 255, 0.87);">
+                    <br>
+                    Main Address:
+                    <strong>{{user.companyInfo.locations.mainLocation.fullAddress}}</strong>
+                    <br>
+                    <br>
+                    Branches:
+                    <table>
+                        <tr *ngFor="let loc of user.companyInfo.locations.locations">
+                            <td>
+                                {{loc.fullAddress}}&nbsp;&nbsp;&nbsp;
+                                <br>
+                                <div id="{{loc.fullAddress}}" style="display: none;">
+                                    <div style="box-shadow: 1px 1px 10px #0000004a; padding: 7mm;">
+                                        <agm-map style="width: 300px; height: 250px;" [latitude]="latitudeEdit" [longitude]="longitudeEdit" [zoom]="zoom">
+                                            <agm-marker [latitude]="latitudeEdit" [longitude]="longitudeEdit" [markerDraggable]="true" (dragEnd)="markerDragEnd2($event)"></agm-marker>
+                                        </agm-map>
+                                        <br>
+                                        {{clickedAddress2}}
+                                    </div>
+                                    <br>
+                                    &nbsp;&nbsp;<button mat-raised-button (click)="saveEditLocation(loc)">Save</button>
+                                    &nbsp;&nbsp;<button mat-raised-button
+                                        (click)="cancelEditLocation(loc)">Cancel</button>
+
+                                </div>
+                            </td>
+                            <td valign="top">
+                                &nbsp;&nbsp;&nbsp;<button mat-raised-button
+                                    (click)="editLocation(loc)">Edit</button>&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td valign="top">
+                                &nbsp;&nbsp;&nbsp;<button mat-raised-button (click)="removeLocation(loc.id)"
+                                    >Remove</button>&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td valign="top">
+                                <mat-form-field style="width: 8cm;">
+                                    <mat-label>Move cars to location if removing</mat-label>
+                                    <mat-select id="moveLoc{{loc.id}}">
+                                        <mat-option
+                                            value="{{user.companyInfo.locations.mainLocation.fullAddress}}">
+                                            {{user.companyInfo.locations.mainLocation.fullAddress}}
+                                        </mat-option>
+                                        <mat-option *ngFor="let loc of user.companyInfo.locations.locations"
+                                            value="{{loc.fullAddress}}">{{loc.fullAddress}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                            <td><p id="remLocError{{loc.id}}" style="color: darkred;"></p></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <button mat-raised-button (click)="openAddField()">Add new</button>
+                    <br>
+                    <div id="newLocField" style="display: none;">
+                        <agm-map style="width: 100%; height: 400px;" [latitude]="latitude" [longitude]="longitude"
+                            [zoom]="zoom">
+                            <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                                (dragEnd)="markerDragEnd($event)"></agm-marker>
+                        </agm-map>
+                        <br>
+                        {{clickedAddress}}&nbsp;&nbsp;
+                        <!--<mat-form-field>
+                        <mat-label>New location</mat-label>
+                        <input type="text" (keydown.enter)="$event.preventDefault()" id="newLocation" #search matInput>
+                    </mat-form-field>-->
+                        <button mat-raised-button (click)="addLocation()">Add</button>
+                    </div>
+                    <!--<table >
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>New location</mat-label>
+                                <input type="text" (keydown.enter)="$event.preventDefault()" id="newLocation" #search matInput>
+                            </mat-form-field>
+                            <div class="form-group">
+                                <label>Enter address</label>
+                                <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+                            </div>
+                        </td>
+                        <td>
+                            <button mat-raised-button (click)="addLocation()">Add</button>
+                        </td>
+                    </tr>
+                </table>-->
+
+                </div>
+            </div>
+            <div [hidden]="extrasHidden"
+                style="margin-left: 7cm; min-height: 20cm; height: fit-content; padding: 1cm; background-color: gainsboro;">
+                <div *ngFor="let amenity of user.companyInfo.extras">
+                    <table>
+                        <tr>
+                            <td><img style="width: 6cm; height: 5cm;" src="./assets/{{amenity.image}}" /></td>
+                            <td>
+                                <table style="padding-left: 4mm;">
+                                    <tr>
+                                        <td>&nbsp;&nbsp;{{amenity.name}}&nbsp;-&nbsp;{{amenity.price}}</td>
+                                        <td>&nbsp;&nbsp;<button mat-raised-button
+                                                (click)="editAmenity(amenity)">Edit</button>&nbsp;&nbsp;</td>
+                                        <td>&nbsp;&nbsp;<button mat-raised-button (click)="removeAmenity(amenity.id)">Remove</button>&nbsp;&nbsp;</td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td id="amenity{{amenity.id}}" style="display: none;">
+                                <table style="margin-left: 2cm;">
+                                    <tr>
+                                        <td valign="center"><br><br>
+                                            <mat-form-field style="width: 5cm;">
+                                                <mat-label>Name</mat-label>
+                                                <input matInput value="{{amenity.name}}" name="amenity{{amenity.id}}">
+                                            </mat-form-field>
+                                            <mat-form-field style="width: 5cm;">
+                                                <mat-label>Price</mat-label>
+                                                <input matInput value="{{amenity.price}}" name="amenity{{amenity.id}}">
+                                            </mat-form-field>
+                                            <br>
+                                            <button mat-raised-button style="width: 10cm;">
+                                                <input name="amenity{{amenity.id}}" type="file" />
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <br>
+                                            <button mat-raised-button (click)="saveEditAmenity(amenity)"
+                                                style="margin-left: 55mm;">Save</button>
+                                            &nbsp;&nbsp;
+                                            <button mat-raised-button
+                                                (click)="closeEditAmenity(amenity.id)">Cancel</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="color: darkred; display: none;" id="amenityError{{amenity.id}}"></p>
+                    <br>
+                    <mat-divider></mat-divider>
+                    <br>
+                </div>
+                <br>
+                <button mat-raised-button color="accent" (click)="OpenAddNewAmenity()">Add New</button>
+                <div id="newAmenityDiv" style="display: none;">
+                    <br>
+                    <table style="padding-left: 4mm;">
+                        <tr>
+                            <td>
+                                <mat-form-field style="width: 4cm;">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput value="" name="newAmenity">
+                                </mat-form-field>
+                                <mat-form-field style="width: 4cm;">
+                                    <mat-label>Price</mat-label>
+                                    <input matInput type="number" name="newAmenity">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Payment options</mat-label>
+                                    <mat-select name="newAmenity" [(ngModel)]="amenityPayment">
+                                        <mat-option value="One time payment">One time payment</mat-option>
+                                        <mat-option value="Price per day">Price per day</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <button mat-raised-button style="width: 10cm;">
+                                    <input name="newAmenity" type="file" />
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <button mat-raised-button color="accent" (click)="AddNewAmenity()">Add</button>
+                    &nbsp;&nbsp;
+                    <button mat-raised-button color="accent" (click)="closeAddAmenity()">Cancel</button>
+                </div>
+            </div>
+            <div [hidden]="profileInfoHidden"
+                style="margin-left: 7cm; height: 20cm; padding: 1cm; background-color: gainsboro;">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Change Account Information
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <form [formGroup]="ChangeInformationGroup">
+
+                            <mat-form-field>
+                                <mat-label>Name</mat-label>
+                                <input formControlName="fullname" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>Birthday</mat-label>
+                                <input matInput formControlName="birthday" [matDatepicker]="picker1">
+                                <mat-datepicker-toggle matSuffix [for]="picker1">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>Address</mat-label>
+                                <input formControlName="address" matInput>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>E-mail</mat-label>
+                                <input formControlName="email" matInput>
+                            </mat-form-field>
+
+                            <p>Please enter your password to confirm</p>
+
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input formControlName="passCurrent" type="password" matInput>
+                            </mat-form-field>
+                            <br>
+                            <table>
+                                <tr>
+                                    <td><button mat-raised-button (click)="changeInformation()">Save</button></td>
+                                    <td style="padding-top: 4mm; padding-left: 4mm;">
+                                        <p id="changeInfoError" style="color: red;"></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Change username
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <form [formGroup]="ChangeUsernameGroup">
+                            <mat-form-field>
+                                <mat-label>Username</mat-label>
+                                <input formControlName="username" matInput>
+                                <mat-hint *ngIf="usernameExists">Username already exists</mat-hint>
+                            </mat-form-field>
+
+                            <p>Please enter your password to confirm</p>
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input formControlName="currentPass" matInput type="password">
+                            </mat-form-field>
+                            <br>
+
+                            <table>
+                                <tr>
+                                    <td><button mat-raised-button (click)="changeUsername()">Save</button></td>
+                                    <td style="padding-top: 4mm; padding-left: 4mm;">
+                                        <p id="changeUsernameError" style="color: red;"></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Change password
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <form [formGroup]="ChangePasswordGroup">
+                            <mat-form-field>
+                                <mat-label>New password</mat-label>
+                                <input matInput formControlName="newPassword" type="password">
+                                <mat-error *ngIf="ChangePasswordGroup.controls['newPassword'].hasError('required')">
+                                    New password is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Repeat new password </mat-label>
+                                <input matInput formControlName="repeatNewPassword" type="password">
+                                <mat-error
+                                    *ngIf="ChangePasswordGroup.controls['repeatNewPassword'].hasError('required')">
+                                    New password is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Current password</mat-label>
+                                <input matInput formControlName="oldPassword" type="password">
+                                <mat-error *ngIf="ChangePasswordGroup.controls['oldPassword'].hasError('required')">
+                                    Current password is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </form>
+
+                        <br>
+                        <table>
+                            <tr>
+                                <td><button mat-raised-button (click)="ChangePassword()">Save</button></td>
+                                <td style="padding-top: 4mm; padding-left: 4mm;">
+                                    <p id="changePassError" style="color: red;"></p>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+
+        </div>
+    </div>
+</body>

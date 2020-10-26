@@ -1,0 +1,179 @@
+﻿2020-09-02 17:13:22.167 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 17:13:23.258 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 17:21:27.578 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 17:21:28.428 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 17:23:55.218 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 17:23:55.908 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 17:30:13.891 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 17:30:15.666 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 18:24:30.116 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 18:24:30.616 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 18:28:17.568 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 18:28:18.526 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 18:30:25.059 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 18:30:26.033 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 18:35:16.181 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 20:25:39.209 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 20:25:40.797 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 20:32:01.279 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 20:32:01.448 WARN  'airlinesEndpoint MessagePump' connection shutdown: AMQP close-reason, initiated by Library, code=541, text='Unexpected Exception', classId=0, methodId=0, cause=System.Net.Sockets.SocketException (110): Connection timed out
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+--- End of stack trace from previous location where exception was thrown ---
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+2020-09-02 20:32:01.463 WARN  'airlinesEndpoint Publish' connection shutdown: AMQP close-reason, initiated by Library, code=541, text='Unexpected Exception', classId=0, methodId=0, cause=System.Net.Sockets.SocketException (110): Connection timed out
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+--- End of stack trace from previous location where exception was thrown ---
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+2020-09-02 20:32:01.848 WARN  Failed to acknowledge message 'd492df61-9a75-48fe-aeb1-ac2a01513bfa' because the channel was closed. The message was returned to the queue.
+RabbitMQ.Client.Exceptions.AlreadyClosedException: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Library, code=541, text='Unexpected Exception', classId=0, methodId=0, cause=System.Net.Sockets.SocketException (110): Connection timed out
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+--- End of stack trace from previous location where exception was thrown ---
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+   at RabbitMQ.Client.Impl.SessionBase.Transmit(Command cmd)
+   at RabbitMQ.Client.Impl.ModelBase.ModelSend(MethodBase method, ContentHeaderBase header, ReadOnlyMemory`1 body)
+   at RabbitMQ.Client.Framing.Impl.Model.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at RabbitMQ.Client.Impl.RecoveryAwareModel.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at RabbitMQ.Client.Impl.AutorecoveringModel.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at NServiceBus.Transport.RabbitMQ.ModelExtensions.<>c.<BasicAckSingle>b__1_0(Object state) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/ModelExtensions.cs:line 23
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at NServiceBus.Transport.RabbitMQ.MessagePump.Process(BasicDeliverEventArgs message, Byte[] messageBody) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/MessagePump.cs:line 304
+2020-09-02 20:32:01.922 INFO  Attempting to reconnect in 10 seconds.
+2020-09-02 20:32:01.937 WARN  The circuit breaker for 'airlinesEndpoint MessagePump' is now in the armed state
+2020-09-02 20:32:12.062 INFO  Connection to the broker reestablished successfully.
+2020-09-02 20:32:12.121 INFO  The circuit breaker for 'airlinesEndpoint MessagePump' is now disarmed
+2020-09-02 20:33:43.671 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 20:45:50.816 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 20:45:51.784 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.
+2020-09-02 20:48:08.554 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 20:48:08.554 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 20:48:08.727 WARN  'airlinesEndpoint Publish' connection shutdown: AMQP close-reason, initiated by Library, code=541, text='Unexpected Exception', classId=0, methodId=0, cause=System.Net.Sockets.SocketException (110): Connection timed out
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+--- End of stack trace from previous location where exception was thrown ---
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+2020-09-02 20:48:08.729 WARN  'airlinesEndpoint MessagePump' connection shutdown: AMQP close-reason, initiated by Library, code=541, text='Unexpected Exception', classId=0, methodId=0, cause=System.Net.Sockets.SocketException (110): Connection timed out
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+--- End of stack trace from previous location where exception was thrown ---
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+2020-09-02 20:48:08.916 WARN  The circuit breaker for 'airlinesEndpoint MessagePump' is now in the armed state
+2020-09-02 20:48:08.934 INFO  Attempting to reconnect in 10 seconds.
+2020-09-02 20:48:11.494 WARN  Failed to acknowledge message 'db91b302-71f6-4954-a563-ac2a0155536e' because the channel was closed. The message was returned to the queue.
+RabbitMQ.Client.Exceptions.AlreadyClosedException: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Library, code=541, text='Unexpected Exception', classId=0, methodId=0, cause=System.Net.Sockets.SocketException (110): Connection timed out
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+--- End of stack trace from previous location where exception was thrown ---
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+   at RabbitMQ.Client.Impl.SessionBase.Transmit(Command cmd)
+   at RabbitMQ.Client.Impl.ModelBase.ModelSend(MethodBase method, ContentHeaderBase header, ReadOnlyMemory`1 body)
+   at RabbitMQ.Client.Framing.Impl.Model.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at RabbitMQ.Client.Impl.RecoveryAwareModel.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at RabbitMQ.Client.Impl.AutorecoveringModel.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at NServiceBus.Transport.RabbitMQ.ModelExtensions.<>c.<BasicAckSingle>b__1_0(Object state) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/ModelExtensions.cs:line 23
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at NServiceBus.Transport.RabbitMQ.MessagePump.Process(BasicDeliverEventArgs message, Byte[] messageBody) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/MessagePump.cs:line 304
+2020-09-02 20:48:11.641 WARN  Failed to acknowledge message '27225815-d3ea-4fd4-bdc7-ac2a01558703' because the channel was closed. The message was returned to the queue.
+RabbitMQ.Client.Exceptions.AlreadyClosedException: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Library, code=541, text='Unexpected Exception', classId=0, methodId=0, cause=System.Net.Sockets.SocketException (110): Connection timed out
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+--- End of stack trace from previous location where exception was thrown ---
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+   at RabbitMQ.Client.Impl.SessionBase.Transmit(Command cmd)
+   at RabbitMQ.Client.Impl.ModelBase.ModelSend(MethodBase method, ContentHeaderBase header, ReadOnlyMemory`1 body)
+   at RabbitMQ.Client.Framing.Impl.Model.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at RabbitMQ.Client.Impl.RecoveryAwareModel.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at RabbitMQ.Client.Impl.AutorecoveringModel.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at NServiceBus.Transport.RabbitMQ.ModelExtensions.<>c.<BasicAckSingle>b__1_0(Object state) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/ModelExtensions.cs:line 23
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at NServiceBus.Transport.RabbitMQ.MessagePump.Process(BasicDeliverEventArgs message, Byte[] messageBody) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/MessagePump.cs:line 304
+2020-09-02 20:48:17.352 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 20:48:17.447 WARN  Failed to acknowledge message 'e8d4636b-2a91-4165-b55c-ac2a0155915f' because the channel was closed. The message was returned to the queue.
+RabbitMQ.Client.Exceptions.AlreadyClosedException: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Library, code=541, text='Unexpected Exception', classId=0, methodId=0, cause=System.Net.Sockets.SocketException (110): Connection timed out
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+--- End of stack trace from previous location where exception was thrown ---
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+   at RabbitMQ.Client.Impl.SessionBase.Transmit(Command cmd)
+   at RabbitMQ.Client.Impl.ModelBase.ModelSend(MethodBase method, ContentHeaderBase header, ReadOnlyMemory`1 body)
+   at RabbitMQ.Client.Framing.Impl.Model.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at RabbitMQ.Client.Impl.RecoveryAwareModel.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at RabbitMQ.Client.Impl.AutorecoveringModel.BasicAck(UInt64 deliveryTag, Boolean multiple)
+   at NServiceBus.Transport.RabbitMQ.ModelExtensions.<>c.<BasicAckSingle>b__1_0(Object state) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/ModelExtensions.cs:line 23
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at NServiceBus.Transport.RabbitMQ.MessagePump.Process(BasicDeliverEventArgs message, Byte[] messageBody) in /_/src/NServiceBus.Transport.RabbitMQ/Receiving/MessagePump.cs:line 304
+2020-09-02 20:48:18.959 INFO  The circuit breaker for 'airlinesEndpoint MessagePump' is now disarmed
+2020-09-02 20:48:24.451 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 20:48:28.896 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 20:48:32.566 INFO  Received PlaceOrder, OrderId = nesto
+2020-09-02 20:48:32.577 INFO  Reconnecting to the broker failed.
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> RabbitMQ.Client.Exceptions.OperationInterruptedException: The AMQP operation was interrupted: AMQP close-reason, initiated by Library, code=541, text='Unexpected Exception', classId=0, methodId=0, cause=System.IO.IOException: Unable to read data from the transport connection: Connection reset by peer.
+ ---> System.Net.Sockets.SocketException (104): Connection reset by peer
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at System.IO.BufferedStream.ReadByteSlow()
+   at System.IO.BufferedStream.ReadByte()
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+   at RabbitMQ.Client.Impl.SimpleBlockingRpcContinuation.GetReply(TimeSpan timeout)
+   at RabbitMQ.Client.Impl.ModelBase.ConnectionOpen(String virtualHost, String capabilities, Boolean insist)
+   at RabbitMQ.Client.Framing.Impl.Connection.Open(Boolean insist)
+   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, String clientProvidedName)
+   at RabbitMQ.Client.Framing.Impl.ProtocolBase.CreateConnection(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(String clientProvidedName)
+   at NServiceBus.Transport.RabbitMQ.ConnectionFactory.CreateConnection(String connectionName, Boolean automaticRecoveryEnabled) in /_/src/NServiceBus.Transport.RabbitMQ/Connection/ConnectionFactory.cs:line 92
+   at NServiceBus.Transport.RabbitMQ.ConnectionFactory.CreatePublishConnection() in /_/src/NServiceBus.Transport.RabbitMQ/Connection/ConnectionFactory.cs:line 81
+   at NServiceBus.Transport.RabbitMQ.ChannelProvider.CreateConnection() in /_/src/NServiceBus.Transport.RabbitMQ/Connection/ChannelProvider.cs:line 23
+   at NServiceBus.Transport.RabbitMQ.ChannelProvider.Reconnect() in /_/src/NServiceBus.Transport.RabbitMQ/Connection/ChannelProvider.cs:line 48
+2020-09-02 20:48:32.698 INFO  Attempting to reconnect in 10 seconds.
+2020-09-02 20:48:42.799 INFO  Connection to the broker reestablished successfully.
+2020-09-02 21:01:51.151 INFO  Logging to '/app/bin/Debug/netcoreapp3.1/' with level Info
+2020-09-02 21:01:52.181 INFO  No valid license could be found. Falling back to trial license with start date '2020-09-02'.

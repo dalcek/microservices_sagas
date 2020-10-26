@@ -1,0 +1,61 @@
+version: '3.4'
+
+services:
+  airlinesmicroservice:
+    image: ${DOCKER_REGISTRY-}airlinesmicroservice
+    build:
+      context: .
+      dockerfile: AirlinesMicroservice/Dockerfile
+    depends_on:
+      - mysql-server
+      - rabbitmq
+    ports:
+      - "5003:80"
+
+  carsmicroservice:
+    image: ${DOCKER_REGISTRY-}carsmicroservice
+    build:
+      context: .
+      dockerfile: CarsMicroservice/Dockerfile
+    depends_on:
+      - mysql-server
+      - rabbitmq
+    ports:
+      - "5004:80"
+
+
+  usersmicroservice:
+    image: ${DOCKER_REGISTRY-}usersmicroservice
+    build:
+      context: .
+      dockerfile: UsersMicroservice/Dockerfile
+    depends_on:
+      - mysql-server
+      - rabbitmq
+    ports:
+      - "5005:80"
+
+
+  mysql-server:
+    image: mysql/mysql-server:5.6
+    ports:
+      - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: "DatabasePassword!123"
+        MYSQL_USER: "user"
+        MYSQL_PASSWORD: "UserPassword!123"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+
+  rabbitmq:
+    image: "rabbitmq:3.8-management"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    healthcheck:
+      test: ["CMD-SHELL", "if rabbitmqctl status; then \nexit 0 \nfi \nexit 1"]
+      interval: 10s
+      retries: 5
+volumes:
+  dbdata:
